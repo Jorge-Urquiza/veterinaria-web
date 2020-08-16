@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>Animal Help</title>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- Custom fonts for this template-->
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet"
@@ -43,18 +43,19 @@
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
+                
             </div>
             <div class="sidebar-brand-text mx-3">Veterinaria <sup>Animal Help</sup></div>
+            <!-- Mensajes del servidor -->
         </a>
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
-
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
             <a class="nav-link" href="{{route('home')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
+                <span>DASHBOARD</span></a>
         </li>
 
         <!-- Divider -->
@@ -66,12 +67,26 @@
         </div>
      
 
-
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('veterinarios.index')}}"><i class="fas fa-fw fa-cog"></i>
-                    <span>CU3 Gestionar Veterinarios</span></a>
+            <a class="nav-link collapsed" href="{{route('clientes.index')}}"><i class="fas fa-fw fa-cog"></i>
+                <span>Gestionar Clientes</span>
+            </a>
         </li>
       
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('veterinarios.index')}}"><i class="fas fa-fw fa-cog"></i>
+                <span>Gestionar Veterinarios</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#"><i class="fas fa-fw fa-cog"></i>
+                <span>CU2 Gestionar Productos</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('categorias.index')}}"><i class="fas fa-fw fa-cog"></i>
+                <span>Gestionar Categorias</span>
+            </a>
+        </li>
         <hr class="sidebar-divider">
 
         <!-- Heading -->
@@ -120,23 +135,39 @@
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-
-                <!-- Topbar Search
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                               aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
+            <!-- Mensajes del servidor -->
+                <div class="col-md-4">
+                    @if ($message = Session::get('success'))
+                    <div class="alert temp alert-success mb-0" role="alert">{{$message}}</div>
+                    @endif
+                    @if ($message = Session::get('error'))
+                    <div class="alert temp alert-danger mb-0" role="alert">{{$message}}</div>
+                    @endif
+                    @if ($message = Session::get('danger'))
+                    <div class="alert alert-danger mb-0" id="alert" role="alert">
+                        <ul>
+                            @for ($i = 0; $i < count(Session::get('danger')); $i++)
+                                <li>{{Session::get('danger')[$i]}}</li>
+                            @endfor
+                        </ul>
                     </div>
-                </form>
-                -->
-                <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
+                    @endif
+                </div>
+                
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar paginas"
+                                       aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>         
+                </form>
+               
+                <ul class="navbar-nav ml-auto">
                     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                     <li class="nav-item dropdown no-arrow d-sm-none">
                         <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -160,27 +191,27 @@
                             </form>
                         </div>
                     </li>
-
-
                     <div class="topbar-divider d-none d-sm-block"></div>
 
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->email}}</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->nombre .  ' ' . Auth::user()->apellido }}</span>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModa2">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fa fa-paint-brush" aria-hidden="true"></i>
                                 Personalizar
+                            </a>
+                            <a  class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModa3">
+                                <i class="fa fa-lock mr-2"></i>Cambiar Contraseña
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Cerrar Sesion
+                                <i class="fa fa-sign-out mr-1"></i>Cerrar Sesión
                             </a>
                         </div>
                     </li>
@@ -283,6 +314,77 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="logoutModa3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cambiar Contraseña</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form method="post" action="{{route('veterinarios.change.password')}}">
+                @csrf
+                <div class="modal-body">
+                    
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="current-password" class="control-label">Contraseña Actual</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group" id="show_hide_current_new_password">
+                                    <input id="current-password" type="password"
+                                      class="form-control{{ $errors->has('current-password') ? ' is-invalid' : '' }}" name="current-password" required>
+                                     {!! $errors->first('current-password', '<div class="invalid-feedback">:message</div>') !!}
+                                    <div class="input-group-addon">
+                                      <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                        <br>    
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="" class="control-label">Nueva Contraseña</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group" id="show_hide_new_password">
+                                    <input id="new-password" type="password" class="form-control{{ $errors->has('new-password') ? ' is-invalid' : '' }}" name="new-password" required>
+                                    {!! $errors->first('new-password', '<div class="invalid-feedback">:message</div>') !!}  
+                                    <div class="input-group-addon">
+                                      <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                        <br>   
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="" class="control-label">Confirmar Nueva contraseña</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group" id="show_hide_confirm_new_password">
+                                    <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation" required>
+                                    <div class="input-group-addon">
+                                      <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                  
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-success" value="Guardar">
+                    <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 </div>
 <!-- Bootstrap core JavaScript-->
 <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
@@ -290,13 +392,16 @@
 
 <!-- Core plugin JavaScript-->
 <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
-
+<script src="{{asset('js/project/template/showInputPassword.js')}}"></script>
+@stack('scripts')
 <!-- Page level plugins -->
-
-
 
 <!-- Page level custom scripts -->
 

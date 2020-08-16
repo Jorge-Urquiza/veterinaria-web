@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
+use Auth;
+use App\User;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -12,9 +14,19 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $categoria;
+
+    public function __construct(){
+       $this->categoria = new Categoria();
+       
+    }
     public function index()
     {
         //
+        $categorias = $this->categoria->orderBy('id','DESC')->paginate(10);
+        
+        $this->addCountVisit();
+        return view('categorias.index',compact('categorias'));
     }
 
     /**
@@ -25,6 +37,9 @@ class CategoriaController extends Controller
     public function create()
     {
         //
+        
+        $this->addCountVisit();
+        return view('categorias.create');
     }
 
     /**
@@ -35,7 +50,16 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+    $request->validate([
+        'nombre'=> 'required',
+        'descripcion' => 'required',
+        
+    ]);
+    $data = $request->all();
+    $this->categoria->create($data);
+    $notification = 'Categoria registrada Exitosamente!';
+    return redirect()->route('categorias.index')->with(compact('notification'));
     }
 
     /**
@@ -58,6 +82,8 @@ class CategoriaController extends Controller
     public function edit(Categoria $categoria)
     {
         //
+        $this->addCountVisit();
+        return view('categorias.edit',compact('categoria'));  
     }
 
     /**
@@ -81,5 +107,13 @@ class CategoriaController extends Controller
     public function destroy(Categoria $categoria)
     {
         //
+        
+        $this->cliente= $categoria;
+        $notification = 'La categoria: '.$categoria->nombre .' ha sido eliminada';
+        $this->cliente->delete();
+        return \redirect()->route('categorias.index')->with(compact('notification'));
+    }
+    private function addCountVisit(){
+        Auth::user()->countPage(4);
     }
 }

@@ -1,12 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Cliente;
+use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\User;
+//Model
+use App\Cliente;
+
 
 class ClienteController extends Controller
 {
+    protected $cliente;
+
+    public function __construct(){
+       $this->cliente = new Cliente();
+       
+    }
+    //Caso de uso 1
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,14 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        
+        $clientes = $this->cliente->orderBy('id','DESC')->paginate(10);
+        
+        $this->addCountVisit();
+        return view('clientes.index',compact('clientes'));
+    }
+    private function addCountVisit(){
+        Auth::user()->countPage(1);
     }
 
     /**
@@ -24,7 +42,8 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        $this->addCountVisit();
+        return view('clientes.create');
     }
 
     /**
@@ -33,9 +52,21 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+
+  
+    $request->validate([
+        'nombre'=> 'required',
+        'apellido' => 'required',
+        'ci'=> 'unique:clientes',
+        'genero'=> 'required',
+        'celular'=> 'required|numeric',
+        'edad'=> 'required|numeric',
+    ]);
+    $data = $request->all();
+    $this->cliente->create($data);
+    $notification = 'Cliente registrado Exitosamente!';
+    return redirect()->route('clientes.index')->with(compact('notification'));
     }
 
     /**
@@ -57,7 +88,8 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        $this->addCountVisit();
+        return view('clientes.edit',compact('cliente'));  
     }
 
     /**
@@ -69,7 +101,22 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+      
+        $request->validate([
+            'nombre'=> 'required',
+            'apellido' => 'required',
+            'ci'=> 'required',
+            'genero'=> 'required',
+            'celular'=> 'required|numeric',
+            'edad'=> 'required|numeric',
+        ]);
+          $this->cliente= $cliente;
+        // $this->performValidation($request);
+         $data=  $request->all();
+         $this->cliente->fill($data);
+         $this->cliente->save(); // para guardar los cambios despues de haber usado el "fill" 
+        $notification = 'Cliente modificado Exitosamente!';
+        return redirect()->route('clientes.index')->with(compact('notification'));
     }
 
     /**
@@ -80,6 +127,9 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        //
+        $this->cliente= $cliente;
+        $notification = 'El veterinario '.$cliente->nombre .' ha sido eliminado';
+        $this->cliente->delete();
+        return \redirect()->route('clientes.index')->with(compact('notification'));
     }
 }

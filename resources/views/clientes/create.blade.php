@@ -4,10 +4,10 @@
     <div class="card-header border-0">
         <div class="row align-items-center">
             <div class="col">
-              <h3 class="mb-0">Registrar Veterinario</h3>
+              <h3 class="mb-0">Formulario de registro Cliente</h3>
             </div>
             <div class="col text-right">
-                <a href="{{route('veterinarios.index')}}" class="btn btn-sm btn-danger">
+                <a href="{{route('clientes.index')}}" class="btn btn-sm btn-danger">
                   Cancelar y volver
               </a>
             </div>
@@ -23,49 +23,44 @@
             </ul>
           </div>
          @endif  
-          <form action="{{ route('veterinarios.store') }}" method="POST">
+          <form action="{{ route('clientes.store') }}" method="POST">
             @csrf 
+            
             <div class="form-group">
-                  <label for="">Nombre del Veterinario</label>
+                  <label for="">Nombre</label>
                   <input type="text" name="nombre" class="form-control" placeholder="Ingresa el Nombre" value="{{old('nombre')}}" required >
             </div>
             <div class="form-group">
-                <label for="">Apellidos</label>
+                <label for="">Apellido</label>
                 <input type="text" name="apellido" class="form-control" placeholder="Ingresa el Nombre" value="{{old('apellido')}}" required >
             </div>
             <div class="form-group">
                <label for="">Documento de Identidad</label>
                 <input type="number" name="ci" class="form-control" placeholder="Ingresa tu CI"  value="{{old('ci')}}" >
              </div>
+             <div class="form-group">
+              {{Form::label('genero','Genero:')}}
+              {!! Form::select('genero', 
+                  ['Masculino'=>'Masculino','Femenino'=>'Femenino', 'Otro' => 'Otro'], null,
+                   ['class' => 'form-control form-control-sm ', 'id' => 'genero']) !!}
+             </div>
             <div class="form-group">
-                <label for="">Teléfono</label>
-                  <input type="number" name="celular" class="form-control" placeholder="Ingresa tu Telefono" value="{{old('celular')}}" required >
+                <label for="">Celular</label>
+                  <input type="number" name="celular" class="form-control"
+                  placeholder="Ingra un número de celular" value="{{old('celular')}}" required >
             </div>
             <div class="form-group">
-              <label for="">Direccion</label>
-                <input type="text" name="direccion" class="form-control" placeholder="Ingresa tu Dirección" value="{{old('direccion')}}" required >
-            </div>
-             
-            <div class="form-group">
-                <label for="">E-mail</label>
-                 <input type="email" name="email" class="form-control" placeholder="Ingresa tu Email" value="{{old('email')}}" required >
-            </div>
-            <div class="form-group">
-                <label for="password">Contraseña</label>
-                  <input type="password" name="password" class="form-control" placeholder="Ingresa tu contraseña" required >
-            </div>
+              <label for="">Edad</label>
+                <input type="number" name="edad" class="form-control"
+                placeholder="Ingrese su edad" value="{{old('edad')}}" required >
+          </div>
              <button type="submit" class="btn btn-success">Guardar</button>
         </form>
       </div>
 </div>
 @endsection
 @section('footer')
-
 <div class="alert alert-dark" role="alert">
-    {{Auth()->user()->showCounter(3)}}
+    {{Auth()->user()->showCounter(1)}}
 </div>
 @endsection
-@push('scripts')
-<script src="{{asset('js/project/validaciones/veterinarios/create.js')}}">
-</script>
-@endpush
