@@ -72,20 +72,29 @@
                 <span>Gestionar Clientes</span>
             </a>
         </li>
-      
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#"><i class="fas fa-fw fa-cog"></i>
+                <span>Gestionar Mascotas</span>
+            </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('veterinarios.index')}}"><i class="fas fa-fw fa-cog"></i>
                 <span>Gestionar Veterinarios</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#"><i class="fas fa-fw fa-cog"></i>
-                <span>CU2 Gestionar Productos</span></a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('categorias.index')}}"><i class="fas fa-fw fa-cog"></i>
                 <span>Gestionar Categorias</span>
             </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('productos.index')}}"><i class="fas fa-fw fa-cog"></i>
+                <span>Gestionar Productos</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('ventas.index')}}"><i class="fas fa-fw fa-cog"></i>
+                <span>Gestionar Ventas</span></a>
         </li>
         <hr class="sidebar-divider">
 

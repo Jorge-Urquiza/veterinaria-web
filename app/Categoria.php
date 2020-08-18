@@ -20,4 +20,9 @@ class Categoria extends Model
    
     
     protected $dates =['deleted_at'];
+
+    //relaciones
+    function productos(){
+        return $this->hasMany(Producto::class);
+     }
 }

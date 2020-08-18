@@ -15,7 +15,6 @@ class ClienteController extends Controller
 
     public function __construct(){
        $this->cliente = new Cliente();
-       
     }
     //Caso de uso 1
     /**
@@ -28,11 +27,8 @@ class ClienteController extends Controller
         
         $clientes = $this->cliente->orderBy('id','DESC')->paginate(10);
         
-        $this->addCountVisit();
+        $this->addPageViews();
         return view('clientes.index',compact('clientes'));
-    }
-    private function addCountVisit(){
-        Auth::user()->countPage(1);
     }
 
     /**
@@ -42,7 +38,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        $this->addCountVisit();
+        $this->addPageViews();
         return view('clientes.create');
     }
 
@@ -88,8 +84,9 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        $this->addCountVisit();
-        return view('clientes.edit',compact('cliente'));  
+        $this->addPageViews();
+        $generos= collect([ 'Masculino' ,'Femenino' ,'Otro']);
+        return view('clientes.edit',compact('cliente', 'generos'));  
     }
 
     /**
@@ -115,7 +112,7 @@ class ClienteController extends Controller
          $data=  $request->all();
          $this->cliente->fill($data);
          $this->cliente->save(); // para guardar los cambios despues de haber usado el "fill" 
-        $notification = 'Cliente modificado Exitosamente!';
+         $notification = 'Cliente modificado Exitosamente!';
         return redirect()->route('clientes.index')->with(compact('notification'));
     }
 
@@ -131,5 +128,8 @@ class ClienteController extends Controller
         $notification = 'El veterinario '.$cliente->nombre .' ha sido eliminado';
         $this->cliente->delete();
         return \redirect()->route('clientes.index')->with(compact('notification'));
+    }
+    private function addPageViews(){
+        Auth::user()->countPage(1);
     }
 }

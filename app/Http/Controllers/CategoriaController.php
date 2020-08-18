@@ -7,6 +7,8 @@ use Auth;
 use App\User;
 use Illuminate\Http\Request;
 
+//Model
+
 class CategoriaController extends Controller
 {
     /**
@@ -96,6 +98,19 @@ class CategoriaController extends Controller
     public function update(Request $request, Categoria $categoria)
     {
         //
+        
+        $request->validate([
+            'nombre'=> 'required',
+            'descripcion' => 'required',
+          
+        ]);
+          $this->categoria= $categoria;
+        // $this->performValidation($request);
+         $data=  $request->all();
+         $this->categoria->fill($data);
+         $this->categoria->save(); // para guardar los cambios despues de haber usado el "fill" 
+         $notification = 'Categoria modificada Exitosamente!';
+        return redirect()->route('categorias.index')->with(compact('notification'));
     }
 
     /**
@@ -107,7 +122,6 @@ class CategoriaController extends Controller
     public function destroy(Categoria $categoria)
     {
         //
-        
         $this->cliente= $categoria;
         $notification = 'La categoria: '.$categoria->nombre .' ha sido eliminada';
         $this->cliente->delete();

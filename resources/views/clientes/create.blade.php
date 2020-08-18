@@ -42,7 +42,8 @@
               {{Form::label('genero','Genero:')}}
               {!! Form::select('genero', 
                   ['Masculino'=>'Masculino','Femenino'=>'Femenino', 'Otro' => 'Otro'], null,
-                   ['class' => 'form-control form-control-sm ', 'id' => 'genero']) !!}
+                   ['class' => 'form-control form-control-sm ', 'id' => 'genero' ,
+                   'placeholder' => 'Seleccionar categoria' , 'data-live-search' => 'true' ,  'required' => true]) !!}
              </div>
             <div class="form-group">
                 <label for="">Celular</label>

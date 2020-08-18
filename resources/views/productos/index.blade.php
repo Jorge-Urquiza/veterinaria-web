@@ -4,12 +4,12 @@
         <div class="card-header border-0">
             <div class="row align-items-center">
               <div class="col">
-                <h3 class="mb-0">Lista de Clientes</h3>
+                <h3 class="mb-0">Lista de Productos</h3>
               </div>
               <div class="col text-right">
-                <a  href="{{route('clientes.create')}}" class="btn btn-sm btn-success">
+                <a  href="{{route('productos.create')}}" class="btn btn-sm btn-success">
                     <span>
-                        <i class="fa fa-plus"></i> Nuevo Cliente
+                        <i class="fa fa-plus"></i> Nuevo Producto
                     </span>
                 </a>  
               </div>
@@ -27,28 +27,25 @@
                 <thead>
                 <tr>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">CI</th>
-                    <th scope="col">Genero</th>
-                    <th scope="col">Celular</th>
-                    <th scope="col">Edad</th>
+                    <th scope="col">Precio (Bs.)</th>
+                    <th scope="col">Cantidad Stock</th>
+                    <th scope="col">Categoria</th>
                     <th scope="col">Opciones</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($clientes as $cliente)
+                @foreach($productos as $producto)
                 <tr>
-                    <th>{{$cliente->nombre}}</th>
-                    <th>{{$cliente->apellido}}</th>
-                    <th>{{$cliente->ci}}</th>
-                    <th>{{$cliente->genero}}</th>
-                    <th>{{$cliente->celular}}</th>
-                    <th>{{$cliente->edad}}</th>
+                    <th>{{$producto->nombre}}</th>
+                    <th>{{$producto->precio }}</th>
+                    <th>{{$producto->stock}}</th>
+                    <th>{{$producto->categoria->nombre }}</th>
+                
                     <td>
-                        <form action="{{route('clientes.delete',$cliente->id)}}" method="post">
+                        <form action="{{route('productos.delete',$producto->id)}}" method="post">
                         @csrf
                         @method('DELETE')
-                        <a href="{{route('clientes.edit',$cliente->id)}}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{{route('productos.edit', $producto->id)}}" class="btn btn-primary btn-sm">Editar</a>
                         <button data-toggle="tooltip" title= "Eliminar veterinario" type="submit" type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                         </form>
                     </td>
@@ -58,13 +55,13 @@
             </table>
         </div>
         <div class="card-footer clearfix">
-            {{ $clientes->links() }}
-            <p class="text-muted">Mostrando <strong>{{ $clientes->count() }}</strong> registros de <strong>{{$clientes->total() }}</strong> totales</p>
+            {{ $productos->links() }}
+            <p class="text-muted">Mostrando <strong>{{ $productos->count() }}</strong> registros de <strong>{{$productos->total() }}</strong> totales</p>
         </div>  
 </div>
 @endsection
 @section('footer')
 <div class="alert alert-dark" role="alert">
-    {{Auth()->user()->showCounter(1)}}
+    {{Auth()->user()->showCounter(5)}}
 </div>
 @endsection

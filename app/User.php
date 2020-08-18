@@ -60,7 +60,11 @@ class User extends Authenticatable
         $page = Page::findOrFail($id);
         return $page->cu." || Numero de visitas: ".$page->count;
     }
-
+    public function total(){
+        $total = DB::table('pages')
+                ->sum('count');
+        return "Numero total de visitas en el sitio : ".$total;
+    }
     public function getStatsPages(){
         $array = [];
         for($i=1; $i <= 8;$i++){

@@ -3,7 +3,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js">
     <div class="container">
        
-            <h3>Estadisticas de Acceso por Pagina</h3>
+            <center>
+                <h3>Estadisticas de visitas de casos de uso por Pagina</h3>
+            </center>
+           
             <br>
             <div class="row">
                 <canvas id="myChart" width="100%" height="50px"></canvas>
@@ -54,4 +57,9 @@
             options: Chart.defaults.Pie
         });
     </script>
+@endsection
+@section('footer')
+<div class="alert alert-dark" role="alert">
+    {{Auth()->user()->total()}}
+</div>
 @endsection

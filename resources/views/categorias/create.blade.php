@@ -7,7 +7,7 @@
               <h3 class="mb-0">Nueva Categoria</h3>
             </div>
             <div class="col text-right">
-                <a href="{{route('clientes.index')}}" class="btn btn-sm btn-danger">
+                <a href="{{route('categorias.index')}}" class="btn btn-sm btn-danger">
                   Cancelar y volver
               </a>
             </div>
