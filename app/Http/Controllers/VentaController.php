@@ -47,7 +47,7 @@ TIPOS DE ATENCIONES
         $clientes =Cliente::orderBy('nombre')->pluck('nombre','id');
         $veterinarios =User::orderBy('nombre')->pluck('nombre','id');
         $productos =Producto::orderBy('nombre')->pluck('nombre','id');
-        return view('ventas.create',compact('productos','clientes', 'veterinarios' , 'productos'));
+        return view('ventas.create', compact('productos','clientes', 'veterinarios' , 'productos'));
 
     }
 

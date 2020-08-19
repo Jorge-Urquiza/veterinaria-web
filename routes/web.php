@@ -26,12 +26,12 @@ Route::group(['middleware' => ['auth']], function () {
        // Route::post('color', 'UserController@color')->name('color');
         //CASO DE USO 1 GESTIONAR CLIENTE
       
-     Route::get('clientes', 'ClienteController@index')->name('clientes.index');
-     Route::get('clientes/create', 'ClienteController@create')->name('clientes.create');
-     Route::get('clientes/{cliente}/edit','ClienteController@edit')->name('clientes.edit');
-     Route::post('clientes/store', 'ClienteController@store')->name('clientes.store');
-     Route::put('clientes/{cliente}/update', 'ClienteController@update')->name('clientes.update');
-     Route::delete('clientes/{cliente}/delete', 'ClienteController@destroy')->name('clientes.delete');
+      Route::get('clientes' , 'ClienteController@index')->name('clientes.index');
+      Route::get('clientes/create', 'ClienteController@create')->name('clientes.create');
+      Route::get('clientes/{cliente}/edit','ClienteController@edit')->name('clientes.edit');
+      Route::post('clientes/store', 'ClienteController@store')->name('clientes.store');
+      Route::put('clientes/{cliente}/update', 'ClienteController@update')->name('clientes.update');
+      Route::delete('clientes/{cliente}/delete', 'ClienteController@destroy')->name('clientes.delete');
 
       /*  //CASO DE USO 1 GESTIONAR MASCOTA
         Route::get('mascotas', 'MascotaController@index')->name('mascotas.index');
@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth']], function () {
      Route::get('veterinarios/{veterinario}/edit','VeterinarioController@edit')->name('veterinarios.edit');
      Route::put('veterinarios/{veterinario}/update', 'VeterinarioController@update')->name('veterinarios.update');
      Route::delete('veterinarios/{veterinario}/delete', 'VeterinarioController@destroy')->name('veterinarios.delete');
+   
      //Custom
      Route::post('color', 'VeterinarioController@color')->name('color');
      Route::get('veterinarios/search', 'VeterinarioController@index')->name('veterinarios.search');

@@ -19,9 +19,8 @@ class Cliente extends Model
         'genero', 
         'celular',
         'edad'
-    ];
-   
-    
+    ]; 
     protected $dates =['deleted_at'];
 
+    
 }

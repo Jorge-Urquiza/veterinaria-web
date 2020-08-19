@@ -11,6 +11,7 @@ use App\Cliente;
 
 class ClienteController extends Controller
 {
+
     protected $cliente;
 
     public function __construct(){
@@ -24,11 +25,10 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        
         $clientes = $this->cliente->orderBy('id','DESC')->paginate(10);
-        
+        dd($clientes);
         $this->addPageViews();
-        return view('clientes.index',compact('clientes'));
+        return view('clientes.index', compact('clientes'));
     }
 
     /**
@@ -49,20 +49,18 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-
-  
-    $request->validate([
-        'nombre'=> 'required',
-        'apellido' => 'required',
-        'ci'=> 'unique:clientes',
-        'genero'=> 'required',
-        'celular'=> 'required|numeric',
-        'edad'=> 'required|numeric',
-    ]);
-    $data = $request->all();
-    $this->cliente->create($data);
-    $notification = 'Cliente registrado Exitosamente!';
-    return redirect()->route('clientes.index')->with(compact('notification'));
+        $request->validate([
+            'nombre'=> 'required',
+            'apellido' => 'required',
+            'ci'=> 'unique:clientes',
+            'genero'=> 'required',
+            'celular'=> 'required|numeric',
+            'edad'=> 'required|numeric',
+        ]); 
+        $data = $request->all();
+        $this->cliente->create($data);
+        $notification = 'Cliente registrado Exitosamente!';
+        return redirect()->route('clientes.index')->with(compact('notification'));
     }
 
     /**
@@ -125,11 +123,12 @@ class ClienteController extends Controller
     public function destroy(Cliente $cliente)
     {
         $this->cliente= $cliente;
-        $notification = 'El veterinario '.$cliente->nombre .' ha sido eliminado';
+        $notification = 'El cliente '.$cliente->nombre .' ha sido eliminado';
         $this->cliente->delete();
         return \redirect()->route('clientes.index')->with(compact('notification'));
     }
     private function addPageViews(){
         Auth::user()->countPage(1);
     }
+    
 }
