@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Atencion;
+use Auth;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
+use App\User;
+use App\Atencion;
+use App\Mascota;
 class AtencionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
-        //
+        $this->addPageViews();
+        $atenciones= Atencion::orderBy('id','DESC')->paginate(10);
+        return view('atenciones.index',compact('atenciones'));
     }
 
     /**
@@ -81,5 +82,8 @@ class AtencionController extends Controller
     public function destroy(Atencion $atencion)
     {
         //
+    }
+    private function addPageViews(){
+        Auth::user()->countPage(7);
     }
 }

@@ -22,5 +22,7 @@ class Cliente extends Model
     ]; 
     protected $dates =['deleted_at'];
 
-    
+    function mascotas(){
+        return $this->hasMany(Mascota::class);
+     }
 }

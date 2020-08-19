@@ -14,8 +14,21 @@ class CreateTableAtenciones extends Migration
     public function up()
     {
         Schema::create('atenciones', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->date('fecha');
+            $table->string('tipo'); // tipo de atencion  (emergencia preventivo control)
+            $table->string('problema')->nullable();
+            $table->string('diagnostico')->nullable();
+            $table->string('tratamiento')->nullable();
+
+            $table->unsignedInteger('veterinario_id');
+            $table->foreign('veterinario_id')->references('id')->on('users');
+
+            $table->unsignedInteger('mascota_id');
+            $table->foreign('mascota_id')->references('id')->on('mascotas');
+            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

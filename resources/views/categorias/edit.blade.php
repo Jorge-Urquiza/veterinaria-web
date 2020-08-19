@@ -23,12 +23,11 @@
             </ul>
           </div>
          @endif  
-          <form action="{{ route('categorias.store') }}" method="POST">
-            @csrf 
-          
+        {!! Form::model($categoria,['route'=>['categorias.update',$categoria->id]]) !!}
+         @method('PUT')  
             <div class="form-group">
               <label for="">Nombre</label>
-              <input type="text" name="nombre" class="form-control" placeholder="Ingresa el Nombre"
+              <input type="text" name="nombre" class="form-control" placeholder="Ingresa el Nombre" 
               value="{{old('nombre',$categoria->nombre)}}" required>
             </div>
             <div class="form-group">
@@ -38,7 +37,7 @@
             </textarea>
             </div>
              <button type="submit" class="btn btn-success">Guardar</button>
-        </form>
+        {!! Form::close()!!}
       </div>
 </div>
 @endsection

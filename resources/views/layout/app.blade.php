@@ -73,7 +73,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#"><i class="fas fa-fw fa-cog"></i>
+            <a class="nav-link collapsed"href="{{route('mascotas.index')}}"><i class="fas fa-fw fa-cog"></i>
                 <span>Gestionar Mascotas</span>
             </a>
         </li>
@@ -96,6 +96,12 @@
             <a class="nav-link collapsed" href="{{route('ventas.index')}}"><i class="fas fa-fw fa-cog"></i>
                 <span>Gestionar Ventas</span></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('atenciones.index')}}"><i class="fas fa-fw fa-cog"></i>
+                <span>Gestionar Atenciones</span></a>
+        </li>
+        
+        
         <hr class="sidebar-divider">
 
         <!-- Heading -->

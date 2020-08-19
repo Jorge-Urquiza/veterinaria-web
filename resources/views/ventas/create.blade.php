@@ -50,7 +50,7 @@
             </div>
             <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
               <div class="form-group">
-                {{Form::label('cliente','Cliente:')}}
+                {{Form::label('cliente','Cliente (Comprador):')}}
                 {!! Form::select('cliente_id', $clientes, null, [ 'placeholder' => 'Seleccionar Cliente'
                 ,'class' => 'form-control selectpicker',
                                             'title' => 'Seleccionar', 'data-live-search' => 'true' ,  'required' => true]) !!}
@@ -132,7 +132,6 @@
           <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12" id="guardar">
              <div class="form-group">
                 <button type="submit" class="btn btn-success">Guardar</button>        
-                <button type="reset" class="btn btn-danger">Cancelar</button>     
               </div>  
           </div>
         </div>

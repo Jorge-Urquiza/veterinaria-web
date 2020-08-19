@@ -26,7 +26,6 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = $this->cliente->orderBy('id','DESC')->paginate(10);
-        dd($clientes);
         $this->addPageViews();
         return view('clientes.index', compact('clientes'));
     }
@@ -83,8 +82,7 @@ class ClienteController extends Controller
     public function edit(Cliente $cliente)
     {
         $this->addPageViews();
-        $generos= collect([ 'Masculino' ,'Femenino' ,'Otro']);
-        return view('clientes.edit',compact('cliente', 'generos'));  
+        return view('clientes.edit',compact('cliente'));  
     }
 
     /**
@@ -130,5 +128,4 @@ class ClienteController extends Controller
     private function addPageViews(){
         Auth::user()->countPage(1);
     }
-    
 }

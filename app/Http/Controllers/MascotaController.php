@@ -2,19 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Mascota;
+
 use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Facades\Validator;
+use App\User;
+
+//Model
+use App\Mascota;
+use App\Cliente;
 
 class MascotaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //iNSTANCIAS A LOS MODELOS
+    private $cliente;
+    private $mascota;
+
+    public function __construct(){
+       $this->cliente = new Cliente();
+       $this->mascota = new Mascota();
+    }
     public function index()
     {
-        //
+        $mascotas = $this->mascota->orderBy('id','DESC')->paginate(10);
+     
+        $this->addPageViews();
+        return view('mascotas.index', compact('mascotas'));
     }
 
     /**
@@ -24,7 +37,10 @@ class MascotaController extends Controller
      */
     public function create()
     {
-        //
+        $this->addPageViews();
+
+        $clientes =$this->cliente->orderBy('nombre')->pluck('nombre','id');
+        return view('mascotas.create',compact('clientes'));
     }
 
     /**
@@ -33,9 +49,20 @@ class MascotaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    function store(Request $request){
+
+    
+        $request->validate([
+            'nombre'=> 'required',
+            'raza' => 'required',
+            'color'=> 'required',
+            'tipo'=> 'required',
+            'cliente_id'=> 'required',
+        ]); 
+        $data = $request->all();
+        $this->mascota->create($data);
+        $notification = 'Mascota registrado Exitosamente!';
+        return redirect()->route('mascotas.index')->with(compact('notification'));
     }
 
     /**
@@ -58,6 +85,10 @@ class MascotaController extends Controller
     public function edit(Mascota $mascota)
     {
         //
+        $this->addPageViews();
+
+        $clientes =$this->cliente->orderBy('nombre')->pluck('nombre','id');
+        return view('mascotas.edit',compact('clientes','mascota'));  
     }
 
     /**
@@ -69,7 +100,21 @@ class MascotaController extends Controller
      */
     public function update(Request $request, Mascota $mascota)
     {
-        //
+    
+        $request->validate([
+            'nombre'=> 'required',
+            'raza' => 'required',
+            'color'=> 'required',
+            'tipo'=> 'required',
+            'cliente_id'=> 'required',
+        ]); 
+          $this->mascota= $mascota;
+        // $this->performValidation($request);
+         $data=  $request->all();
+         $this->mascota->fill($data);
+         $this->mascota->save(); // para guardar los cambios despues de haber usado el "fill" 
+         $notification = 'Mascota modificada Exitosamente!';
+        return redirect()->route('mascotas.index')->with(compact('notification'));
     }
 
     /**
@@ -80,6 +125,12 @@ class MascotaController extends Controller
      */
     public function destroy(Mascota $mascota)
     {
-        //
+        $this->mascota= $mascota;
+        $notification = 'La mascota: '.$mascota->nombre .' ha sido eliminado';
+        $this->mascota->delete();
+        return \redirect()->route('mascotas.index')->with(compact('notification'));
+    }
+    private function addPageViews(){
+        Auth::user()->countPage(2);
     }
 }

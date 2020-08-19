@@ -43,10 +43,12 @@
           </div>
 
           <div class="form-group">
-              {{Form::label('genero','Genero:')}}
-              {!! Form::select('genero', $generos, null, ['class' => 'form-control selectpicker',
-                                          'title' => 'Seleccionar', 'data-live-search' => 'true']) !!}
-          </div>
+            {{Form::label('genero','Genero:')}}
+            {!! Form::select('genero', 
+                ['Masculino'=>'Masculino','Femenino'=>'Femenino', 'Otro' => 'Otro'], null,
+                 ['class' => 'form-control ', 'id' => 'genero' ,
+                 'placeholder' => 'Seleccionar categoria' , 'data-live-search' => 'true' ,  'required' => true]) !!}
+           </div>
           <div class="form-group">
               <label for="">Celular</label>
                 <input type="number" name="celular" class="form-control"
