@@ -4,10 +4,10 @@
     <div class="card-header border-0">
         <div class="row align-items-center">
             <div class="col">
-              <h3 class="mb-0">Modificar Producto</h3>
+              <h3 class="mb-0">Modificar Atencion </h3>
             </div>
             <div class="col text-right">
-                <a href="{{route('categorias.index')}}" class="btn btn-sm btn-danger">
+                <a href="{{route('atenciones.index')}}" class="btn btn-sm btn-danger">
                   Cancelar y volver
               </a>
             </div>
@@ -23,42 +23,127 @@
             </ul>
           </div>
          @endif  
-          @php
-             $max = 1000; 
-          @endphp
-            {!! Form::model($producto,['route'=>['productos.update',$producto->id]]) !!}
+            {!! Form::model($atencion,['route'=>['atenciones.update',$atencion->id]]) !!}
             @method('PUT')
-              <div class="form-group">
-                    {{Form::label('nombre','Nombre:')}}
-                    {!! Form::text('nombre', null, ['class' => 'form-control form-control-sm selectpicker',
-                                                'title' => 'Seleccionar', 'data-live-search' => 'true']) !!}
+            <div class="row">
+              <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+                <div class="form-group">
+                  <label for="">Fecha</label>
+                  {{Form::date('fecha',$atencion->date, ['class'=> 'form-control' , 'required' => true]) }}
+                </div>
               </div>
-              <div class="form-group">
-                {{Form::label('precio','Precio:')}}
-                
-                {{Form::number('precio', null, ['class'=>'form-control',
-                  'id' => 'precio' , 'placeholder' => 'Ej: 20.50' , 
-                  'min' => '1',  'required' => true] )}} 
+                <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+                  <div class="form-group">
+                    <label for="">Hora</label>
+                    {{Form::time('hora',$atencion->hora, ['class'=> 'form-control' , 'required' => true]) }}
+                  </div>
+                </div>
+
+            </div>
+            <div class="row">
+              <div class="col-lg-4 col-sm-3 col-md-3 col-xs-12">
+                <div class="form-group">
+                    <label  for="type">Tipo de atencion</label>
+                    <div class="custom-control custom-radio mb-3"> 
+                        <input name="tipo" class="custom-control-input" id="type1" checked type="radio" required
+                        @if($atencion->tipo == 'Consulta') checked @endif value="Consulta" >
+                        <label class="custom-control-label" for="type1">Consulta</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3"> 
+                        <input name="tipo" class="custom-control-input" id="type2"  type="radio" required
+                        @if($atencion->tipo== 'Examen')  checked @endif value="Examen">
+                        <label class="custom-control-label" for="type2">Examen</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3"> 
+                        <input name="tipo" class="custom-control-input" id="type3"  type="radio" required 
+                        @if($atencion->tipo == 'Emergencia')  checked @endif value="Emergencia">
+                        <label class="custom-control-label" for="type3">Emergencia</label>
+                    </div>
+                  </div>
+              </div> 
+            </div>
+            <div class="row">
+              <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+                <div class="form-group">
+                  {{Form::label('mascota','Mascota:')}}
+                  {!! Form::select('mascota_id', $mascotas, null, ['class' => 'form-control selectpicker', 
+                  'placeholder'=>'Seleccionar mascota', 'data-live-search' => 'true' , 'required'=>true ,'id'=>'mascota_id']) !!}
+                </div>  
               </div>
-              <div class="form-group">
-                {{Form::label('stock','Stock:')}}
-                {{Form::number('stock',null,['class'=>'form-control',
-                'id' => 'cantidad' , 'placeholder' => 'Ej: 5' , 'min' => '1', 'max' => $max,  'required' => true])}} 
+              <div class="col-lg-3 col-sm-6 col-md-6 col-xs-12">
+                <div class="form-group">
+                    <label for="">Dueño mascota</label>
+                    <input type="text" name="nombre" class="form-control" disabled
+                       required id="dueño" >
+                </div>
               </div>
-              <div class="form-group">
-                  {{Form::label('categoria_id','Categoria:')}}
-                  {!! Form::select('categoria_id', $categorias, null, ['class' => 'form-control selectpicker',
-                                              'title' => 'Seleccionar', 'data-live-search' => 'true']) !!}
+              <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+                <div class="form-group">
+                  {{Form::label('dueño','Veterinario:')}}
+                  {!! Form::select('veterinario_id', $veterinarios, null, ['class' => 'form-control selectpicker', 
+                   'placeholder'=>'Seleccionar veterinario', 'data-live-search' => 'true' , 'required'=>true]) !!}
+                </div>
               </div>
+            </div>
+            <div class="col-lg-5 col-sm-3 col-md-3 col-xs-12">
               <div class="form-group">
-                <button type="submit" class="btn btn-success">Actualizar</button>
+                <label for="">Problema(s)</label>
+                {{Form::textarea('problema',null,['class'=>'form-control ' . ( $errors->has('problema') ? ' is-invalid' : '' ),'placeholder'=>'Problema'])}}
+                {!! $errors->first('problema','<span class="invalid-feedback d-block">:message</span>') !!}
               </div>
+            </div>
+            <div class="col-lg-5 col-sm-3 col-md-3 col-xs-12">
+              <div class="form-group">
+                <label for="">Diagnostico</label>
+                {{Form::textarea('diagnostico',null,['class'=>'form-control ' . ( $errors->has('diagnostico') ? ' is-invalid' : '' ),'placeholder'=>'Diagnostico '])}}
+               {!! $errors->first('diagnostico','<span class="invalid-feedback d-block">:message</span>') !!}
+              </div>
+            </div>
+            <div class="col-lg-5 col-sm-3 col-md-3 col-xs-12">
+              <div class="form-group">
+                {{Form::label('tratamiento','Tratamiento:')}}
+                {{Form::textarea('tratamiento',null,['class'=>'form-control ' . ( $errors->has('tratamiento') ? ' is-invalid' : '' ),'placeholder'=>'Tratamiento '])}}
+               {!! $errors->first('tratamiento','<span class="invalid-feedback d-block">:message</span>') !!}
+              </div>
+            </div>
+              
+             <button type="submit" class="btn btn-success">Actualizar</button>
             {!! Form::close()!!}
       </div>
 </div>
+@push('scripts')
+<script>
+  var flag = true;
+$(document).ready(function(){
+    if(flag){
+      llenarDueño($("#mascota_id option:selected").val());
+    }
+    flag = false;
+    $('#mascota_id').on('change', function() {
+      llenarDueño($("#mascota_id option:selected").val());
+    });
+});
+function llenarDueño(id) {
+    var url = "{{ route('mascotas.obtener',':id') }}";
+    url = url.replace(':id', id)
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function(data) {
+            $('#dueño').val(data.fullname);
+          
+        },
+        error: function() {
+            alert("Seleccione un id de mascota valida");
+        }
+    });
+}
+
+</script>
+@endpush
 @endsection
 @section('footer')
 <div class="alert alert-dark" role="alert">
-    {{Auth()->user()->showCounter(5)}}
+    {{Auth()->user()->showCounter(7)}}
 </div>
 @endsection

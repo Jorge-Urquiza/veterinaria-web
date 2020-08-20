@@ -41,6 +41,8 @@ Route::group(['middleware' => ['auth']], function () {
       Route::put('mascotas/{mascota}/update', 'MascotaController@update')->name('mascotas.update');
       Route::delete('mascotas/{mascota}/delete', 'MascotaController@destroy')->name('mascotas.delete');
 
+      Route::get('obtener/amo/{mascota}', 'MascotaController@getAmo')->name('mascotas.obtener');
+
      //CASO DE USO 3 GESTIONAR VETERINARIOS
       Route::get('veterinarios', 'VeterinarioController@index')->name('veterinarios.index');
       Route::get('veterinarios/create', 'VeterinarioController@create')->name('veterinarios.create');

@@ -133,4 +133,11 @@ class MascotaController extends Controller
     private function addPageViews(){
         Auth::user()->countPage(2);
     }
+    public function getAmo(Mascota $mascota)
+    {   $fullName= $mascota->cliente->nombre . ' ' . $mascota->cliente->apellido;                                      
+        return response()
+                ->json([
+                     'fullname'=>$fullName
+                ]);
+    }
 }

@@ -25,4 +25,5 @@ class Mascota extends Model
       function cliente(){
          return $this->belongsTo(Cliente::class);
       }
+     
 }

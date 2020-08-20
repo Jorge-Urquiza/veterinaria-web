@@ -27,10 +27,10 @@ class PagesTableSeeder extends Seeder
             'cu' => "CU5: Gestionar Producto"
         ]);
         DB::table('pages')->insert([
-            'cu' => "CU6: Gestionar Atencion"
+            'cu' => "CU6: Gestionar Venta"
         ]);
         DB::table('pages')->insert([
-            'cu' => "CU7: Gestionar Venta"
+            'cu' => "CU7: Gestionar Atencion"
         ]);
         DB::table('pages')->insert([
             'cu' => "CU8: Reportes y Estadisticas"

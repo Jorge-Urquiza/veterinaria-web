@@ -15,6 +15,7 @@ class Atencion extends Model
      protected $table ='atenciones';
      protected $fillable = [
          'fecha',
+         'hora',
          'tipo', // emergencai preventivo control
          'problema',
          'diagnostico',
@@ -29,10 +30,13 @@ class Atencion extends Model
      function mascota(){
         return $this->belongsTo(Mascota::class);
      }
-     
-     /*
      function veterinario(){
-        return $this->belongsTo(User::class);
-     }
-     */
+      return $this->belongsTo(User::class);
+   }
+   
+   /*
+   function veterinario(){
+      return $this->belongsTo(User::class);
+   }
+   */
 }

@@ -16,6 +16,7 @@ class CreateTableAtenciones extends Migration
         Schema::create('atenciones', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha');
+            $table->time('hora');
             $table->string('tipo'); // tipo de atencion  (emergencia preventivo control)
             $table->string('problema')->nullable();
             $table->string('diagnostico')->nullable();

@@ -38,14 +38,15 @@
                 @foreach($atenciones as $atencion)
                 <tr>
                     <th>{{$atencion->fecha }}</th>
+                    <th>{{$atencion->hora }}</th>
                     <th>{{$atencion->tipo}}</th>
-                    <th>{{$atencion->mascota_id }}</th>
-                    <th>{{$atencion->veterinario_id }}</th>
+                    <th>{{$atencion->mascota->nombre}}</th>
+                    <th>{{$atencion->veterinario->nombre }}</th>
                     <td>
                         <form action="{{route('atenciones.delete',$atencion->id)}}" method="post">
                         @csrf
                         @method('DELETE')
-                        <a href="{{route('atenciones.show', $atencion->id)}}" class="btn btn-primary btn-sm">Ver</a>
+                        <a href="{{route('atenciones.show', $atencion->id)}}" class="btn btn-success btn-sm">Ver</a>
                         <a href="{{route('atenciones.edit', $atencion->id)}}" class="btn btn-primary btn-sm">Editar</a>
                         <button data-toggle="tooltip" title= "Eliminar Atencion" type="submit" type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                         </form>
