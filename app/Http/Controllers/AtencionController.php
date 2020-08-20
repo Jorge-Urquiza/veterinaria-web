@@ -115,7 +115,6 @@ class AtencionController extends Controller
         return redirect()->route('atenciones.index')->with(compact('notification'));
 
     }
-
     
     public function destroy(Atencion $atencion)
     {

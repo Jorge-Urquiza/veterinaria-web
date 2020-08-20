@@ -16,6 +16,10 @@ Route::get('/', function () {
 });
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
+Route::get('/contact', function () {
+  return view('contact');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -92,6 +96,8 @@ Route::group(['middleware' => ['auth']], function () {
      Route::get('atenciones/{atencion}/edit','AtencionController@edit')->name('atenciones.edit');
      Route::put('atenciones/{atencion}/update', 'AtencionController@update')->name('atenciones.update');
      Route::delete('atenciones/{atencion}/delete', 'AtencionController@destroy')->name('atenciones.delete');
+
+     Route::get('obtener/nombre/{nombre}', 'ReporteController@getNombre')->name('buscador.nombre');
        
 });
 

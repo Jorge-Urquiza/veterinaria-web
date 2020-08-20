@@ -36,6 +36,8 @@
             <li class="nav-item">
               <a class="nav-link" href="/">Inicio</a>
             </li>
+            <a class="nav-link" href="/contact">Contacto</a>
+            </li>
             <li>
                 <a class="nav-link" href="/login">Sistema</a>
             </li>

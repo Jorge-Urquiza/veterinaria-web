@@ -70,7 +70,7 @@
                   'placeholder'=>'Seleccionar mascota', 'data-live-search' => 'true' , 'required'=>true ,'id'=>'mascota_id']) !!}
                 </div>  
               </div>
-              <div class="col-lg-3 col-sm-6 col-md-6 col-xs-12">
+              <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
                 <div class="form-group">
                     <label for="">Dueño mascota</label>
                     <input type="text" name="nombre" class="form-control" disabled
@@ -85,26 +85,30 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-5 col-sm-3 col-md-3 col-xs-12">
-              <div class="form-group">
-                <label for="">Problema(s)</label>
-                <textarea name ="problema" class="form-control" rows="3" required></textarea>
+            <div class="row">
+              <div class="col-lg-4 col-sm-3 col-md-3 col-xs-12">
+                <div class="form-group">
+                  <label for="">Problema(s)</label>
+                  <textarea name ="problema" class="form-control" rows="3" required></textarea>
+                </div>
+              </div>
+              <div class="col-lg-4 col-sm-3 col-md-3 col-xs-12">
+                <div class="form-group">
+                  <label for="">Diagnostico</label>
+                  <textarea name ="diagnostico" class="form-control"  rows="3" required></textarea>
+                </div>
+              </div>
+              <div class="col-lg-4 col-sm-3 col-md-3 col-xs-12">
+                <div class="form-group">
+                  <label for="">Tratamiento</label>
+                  <textarea name ="tratamiento" class="form-control" rows="3" required></textarea>
+                </div>
               </div>
             </div>
-            <div class="col-lg-5 col-sm-3 col-md-3 col-xs-12">
-              <div class="form-group">
-                <label for="">Diagnostico</label>
-                <textarea name ="diagnostico" class="form-control"  rows="3" required></textarea>
-              </div>
-            </div>
-            <div class="col-lg-5 col-sm-3 col-md-3 col-xs-12">
-              <div class="form-group">
-                <label for="">Tratamiento</label>
-                <textarea name ="tratamiento" class="form-control" rows="3" required></textarea>
-              </div>
-            </div>
-              
-             <button type="submit" class="btn btn-success">Registrar</button>
+          
+              <button type="submit" class="btn btn-success">Registrar</button>
+          
+             
         </form>
       </div>
 </div>

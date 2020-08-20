@@ -20,12 +20,23 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <script  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js"></script>
+
+    
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
     <style>
         html {
             font-size: {{Auth()->user()->font_size}};
         }
+
     </style>
 
 </head>
@@ -170,16 +181,7 @@
                 </div>
                 
                 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-
-                            <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar paginas"
-                                       aria-label="Search" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
-                            </div>         
+                    @include('layout.buscador') 
                 </form>
                
                 <ul class="navbar-nav ml-auto">
@@ -420,7 +422,97 @@
 <!-- Page level custom scripts -->
 
 <!--=================ESTADISTICAS=====================-->
+<script>
+   //JQUERY 
+$(document).ready(function(){
+    $('#buscador').on('change', function() {
+        redireccionar($("#buscador option:selected").val());
+    });
 
+
+});
+    function redireccionar(valor) {
+            switch(valor){
+                case '0':
+                    var url = '{{route("home") }}';               
+                    window.location.href=url;
+                    break;
+                case '1':
+                    var url = '{{route("clientes.index") }}';               
+                    window.location.href=url;
+                    break;
+                case '2':
+                    var url = '{{route("clientes.create") }}';               
+                    window.location.href=url;
+                    break;
+                case '3':
+                    var url = '{{route("mascotas.index") }}';               
+                    window.location.href=url;
+                    break;
+                case '4':
+                    var url = '{{route("mascotas.create") }}';               
+                    window.location.href=url;
+                    break;
+                case '5':
+                    var url = '{{route("veterinarios.index") }}';               
+                    window.location.href=url;
+                    break;
+                case '6':
+                    var url = '{{route("veterinarios.create") }}';               
+                    window.location.href=url;
+                    break;
+
+                case '7':
+                    var url = '{{route("categorias.index") }}';               
+                    window.location.href=url;
+                    break;
+
+
+                case '8':
+                    var url = '{{route("categorias.create") }}';               
+                    window.location.href=url;
+                    break;  
+
+                case '9':
+                    var url = '{{route("productos.index") }}';               
+                    window.location.href=url;
+                    break;
+
+
+                case '10':
+                    var url = '{{route("productos.create") }}';               
+                    window.location.href=url;
+                    break;   
+
+                case '11':
+                    var url = '{{route("ventas.index") }}';               
+                    window.location.href=url;
+                    break;
+
+
+                case '12':
+                    var url = '{{route("ventas.create") }}';               
+                    window.location.href=url;
+                    break;    
+
+                case '13':
+                    var url = '{{route("atenciones.index") }}';               
+                    window.location.href=url;
+                    break;
+
+
+                case '14':
+                    var url = '{{route("atenciones.create") }}';               
+                    window.location.href=url;
+                    break;    
+            }
+        
+
+    }
+
+
+
+</script>
 </body>
 
 </html>
