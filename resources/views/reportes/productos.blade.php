@@ -1,23 +1,25 @@
 @extends('layout.app')
+
 @section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js">
     <div class="container">
-       
-            <center>
-                <h3>Estadisticas de visitas de casos de uso por Pagina</h3>
-            </center>
-           
-            <br>
-            <div class="row">
-                <canvas id="myChart" width="100%" height="50px"></canvas>
-            </div>
+        @if($labels1)
+        <h3>No hay datos para mostrar</h3>
+        @else 
+        <h3>Cantidad de Productos por Categoria</h3>
+        @endif
+        <br>
+        <div class="row">
+            <canvas id="myChart" width="100%" height="50px"></canvas>
+        </div>
+        <br><br>
     </div>
 
     <script>
         var ctx = document.getElementById('myChart');
         var data = {
             datasets: [{
-                data: {!! Auth()->user()->getStatsPages() !!},
+                data: {!! $data1 !!},
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -40,27 +42,27 @@
             }],
 
             // These labels appear in the legend and in the tooltips when hovering different arcs
-            labels: [
-                'CU1 Gestionar Clientes',
-                'CU2 Gestionar Mascota',
-                'CU3 Gestionar Veterinario',
-                'CU4:Gestionar  Categoria',
-                'CU5: Gestionar Producto',
-                'CU6: Gestionar Ventas',
-                'CU7: Gestionar Atenciones',
-                'CU8: Reportes y Estadisticas',
-            ]
+            labels:
+                {!! $labels1 !!}
+
         };
 
         var myPieChart = new Chart(ctx, {
-            type: 'pie',
+            type: 'doughnut',
             data: data,
             options: Chart.defaults.Pie
         });
+
+
+
+
+
     </script>
 @endsection
 @section('footer')
+
 <div class="alert alert-dark" role="alert">
-    {{Auth()->user()->total()}}
+    {{Auth()->user()->showCounter(8)}}
 </div>
 @endsection
+

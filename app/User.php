@@ -30,6 +30,7 @@ class User extends Authenticatable
         'email',
         'password',
         'color',
+        'rol',
         'font_size'
     ];
  
@@ -74,7 +75,9 @@ class User extends Authenticatable
        return json_encode($array);
     }
      
-
+    function atenciones(){
+        return $this->hasMany(Atencion::class,'veterinario_id');
+    }
 
 
 }

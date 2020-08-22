@@ -79,20 +79,25 @@
      
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('clientes.index')}}"><i class="fas fa-fw fa-cog"></i>
+            <a class="nav-link collapsed" href="{{route('clientes.index')}}">
+                <i class="fa fa-address-book" aria-hidden="true"></i>
                 <span>Gestionar Clientes</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed"href="{{route('mascotas.index')}}"><i class="fas fa-fw fa-cog"></i>
+            <a class="nav-link collapsed"href="{{route('mascotas.index')}}">
+                <i class="fa fa-paw" aria-hidden="true"></i>
                 <span>Gestionar Mascotas</span>
             </a>
         </li>
+        @if(auth()->user()->rol == 'director' )
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('veterinarios.index')}}"><i class="fas fa-fw fa-cog"></i>
+            <a class="nav-link collapsed"href="{{route('veterinarios.index')}}">
+                <i class="fa fa-university" aria-hidden="true"></i>
                 <span>Gestionar Veterinarios</span>
             </a>
         </li>
+        @endif
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('categorias.index')}}"><i class="fas fa-fw fa-cog"></i>
                 <span>Gestionar Categorias</span>
@@ -104,15 +109,15 @@
                 <span>Gestionar Productos</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('ventas.index')}}"><i class="fas fa-fw fa-cog"></i>
+            <a class="nav-link collapsed" href="{{route('ventas.index')}}"><i class="fa fa-money" aria-hidden="true"></i>
                 <span>Gestionar Ventas</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('atenciones.index')}}"><i class="fas fa-fw fa-cog"></i>
+            <a class="nav-link collapsed" href="{{route('atenciones.index')}}"><i class="fa fa-calendar-check-o"  aria-hidden="true"></i>
                 <span>Gestionar Atenciones</span></a>
         </li>
         
-        
+        @if(auth()->user()->rol == 'director' )
         <hr class="sidebar-divider">
 
         <!-- Heading -->
@@ -123,15 +128,16 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
                    aria-expanded="true" aria-controls="collapseThree">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>CU8 Reporte y Estadisticas</span>
+                    <i class="fa fa-area-chart" aria-hidden="true"></i>
+                    <span> Reporte y Estadisticas</span>
                 </a>
 
                 <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="#">Reportes</a>
-                        <a class="collapse-item" href="">Estadisticas</a>
+                        <a class="collapse-item" href="{{route('charts.productos')}}">Reporte productos</a>
+                        <a class="collapse-item" href="{{route('charts.veterinarios')}}">Reporte veterinarios</a>
+                        <a class="collapse-item" href="{{route('charts.atenciones')}}">Estadistica atenciones</a>
                     </div>
                 </div>
             </li>
@@ -139,7 +145,7 @@
 
         <hr class="sidebar-divider">
         <hr class="sidebar-divider d-none d-md-block">
-
+        @endif
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -417,6 +423,8 @@
 <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
 <script src="{{asset('js/project/template/showInputPassword.js')}}"></script>
 @stack('scripts')
+  <script src="{{asset('script/chart.js/dist/Chart.min.js')}}"></script>
+  <script src="{{asset('script/chart.js/dist/Chart.extension.js')}}"></script>
 <!-- Page level plugins -->
 
 <!-- Page level custom scripts -->
@@ -505,12 +513,23 @@ $(document).ready(function(){
                     var url = '{{route("atenciones.create") }}';               
                     window.location.href=url;
                     break;    
+                // REPORTES
+                case '15':
+                    var url = '{{route("charts.productos") }}';               
+                    window.location.href=url;
+                    break;    
+                case '16':
+                    var url = '{{route("charts.veterinarios") }}';               
+                    window.location.href=url;
+                    break;       
+                case '17':
+                    var url = '{{route("charts.atenciones") }}';               
+                    window.location.href=url;
+                    break;    
             }
         
 
     }
-
-
 
 </script>
 </body>

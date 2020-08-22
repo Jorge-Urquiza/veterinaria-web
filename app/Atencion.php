@@ -32,8 +32,7 @@ class Atencion extends Model
      }
      function veterinario(){
       return $this->belongsTo(User::class);
-   }
-   
+    }
    /*
    function veterinario(){
       return $this->belongsTo(User::class);

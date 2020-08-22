@@ -97,7 +97,15 @@ Route::group(['middleware' => ['auth']], function () {
      Route::put('atenciones/{atencion}/update', 'AtencionController@update')->name('atenciones.update');
      Route::delete('atenciones/{atencion}/delete', 'AtencionController@destroy')->name('atenciones.delete');
 
-     Route::get('obtener/nombre/{nombre}', 'ReporteController@getNombre')->name('buscador.nombre');
+
        
+     //CASO DE USO 8 REPORTES Y ESTADISTICAS
+     Route::get('charts/atenciones/line', 'ReporteController@atenciones')->name('charts.atenciones');
+
+     
+     Route::get('charts/veterinarios', 'ReporteController@veterinarios')->name('charts.veterinarios');
+     Route::get('charts/productos', 'ReporteController@productos')->name('charts.productos');
+
+
 });
 

@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('ci')->unique();
+            $table->string('ci');
             $table->string('celular');
             $table->string('direccion');
             $table->string('email')->unique();
@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             //configuracion
             $table->string('color')->default('primary');
             $table->string('font_size')->default('15px');
+            $table->enum('rol',['director', 'empleado' ])->default('empleado');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
