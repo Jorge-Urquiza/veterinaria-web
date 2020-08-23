@@ -113,6 +113,7 @@ class MascotaController extends Controller
          $data=  $request->all();
          $this->mascota->fill($data);
          $this->mascota->save(); // para guardar los cambios despues de haber usado el "fill" 
+         \App\Buscar::store($request->get('nombre') ,'mascota','/mascotas');
          $notification = 'Mascota modificada Exitosamente!';
         return redirect()->route('mascotas.index')->with(compact('notification'));
     }

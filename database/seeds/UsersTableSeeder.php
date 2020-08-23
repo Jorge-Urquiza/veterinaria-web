@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
             'rol'=> 'director', 
             'email' => 'balcazar@gmail.com'
     ]);
-
+            /*
         DB::table('users')->insert([
                 'nombre'=> 'Jorge Luis',
                 'apellido'=> 'Urquiza',
@@ -51,7 +51,7 @@ class UsersTableSeeder extends Seeder
         'direccion'=> 'Calle Indana#115',
         'email' => 'luis@gmail.com'
 ]);
-
+*/
         
     }
 }

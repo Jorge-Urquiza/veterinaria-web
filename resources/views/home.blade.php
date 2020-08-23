@@ -53,7 +53,7 @@
         };
 
         var myPieChart = new Chart(ctx, {
-            type: 'pie',
+            type: 'doughnut',
             data: data,
             options: Chart.defaults.Pie
         });

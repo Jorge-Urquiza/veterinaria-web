@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
       Route::get('clientes/{cliente}/edit','ClienteController@edit')->name('clientes.edit');
       Route::post('clientes/store', 'ClienteController@store')->name('clientes.store');
       Route::put('clientes/{cliente}/update', 'ClienteController@update')->name('clientes.update');
-      Route::delete('clientes/{cliente}/delete', 'ClienteController@destroy')->name('clientes.delete');
+      Route::get('clientes/{cliente}/destroy', 'ClienteController@destroy')->name('clientes.delete');
 
        //CASO DE USO 1 GESTIONAR MASCOTA
       Route::get('mascotas', 'MascotaController@index')->name('mascotas.index');
@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
       Route::post('mascotas/store', 'MascotaController@store')->name('mascotas.store');
       Route::get('mascotas/{mascota}/edit','MascotaController@edit')->name('mascotas.edit');
       Route::put('mascotas/{mascota}/update', 'MascotaController@update')->name('mascotas.update');
-      Route::delete('mascotas/{mascota}/delete', 'MascotaController@destroy')->name('mascotas.delete');
+      Route::get('mascotas/{mascota}/destroy', 'MascotaController@destroy')->name('mascotas.delete');
 
       Route::get('obtener/amo/{mascota}', 'MascotaController@getAmo')->name('mascotas.obtener');
 
@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
       Route::post('veterinarios/store', 'VeterinarioController@store')->name('veterinarios.store');
       Route::get('veterinarios/{veterinario}/edit','VeterinarioController@edit')->name('veterinarios.edit');
       Route::put('veterinarios/{veterinario}/update', 'VeterinarioController@update')->name('veterinarios.update');
-      Route::delete('veterinarios/{veterinario}/delete', 'VeterinarioController@destroy')->name('veterinarios.delete');
+      Route::get('veterinarios/{veterinario}/destroy', 'VeterinarioController@destroy')->name('veterinarios.delete');
    
      //Custom
       Route::post('color', 'VeterinarioController@color')->name('color');
@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth']], function () {
       Route::post('categorias/store', 'CategoriaController@store')->name('categorias.store');
       Route::get('categorias/{categoria}/edit','CategoriaController@edit')->name('categorias.edit');
       Route::put('categorias/{categoria}/update', 'CategoriaController@update')->name('categorias.update');
-      Route::delete('categorias/{categoria}/delete', 'CategoriaController@destroy')->name('categorias.delete');
+      Route::get('categorias/{categoria}/destroy', 'CategoriaController@destroy')->name('categorias.delete');
      
      //CASO DE USO 5 GESTIONAR PRODUCTOS
       Route::get('productos', 'ProductoController@index')->name('productos.index');
@@ -74,7 +74,7 @@ Route::group(['middleware' => ['auth']], function () {
       Route::post('productos/store', 'ProductoController@store')->name('productos.store');
       Route::get('productos/{producto}/edit','ProductoController@edit')->name('productos.edit');
       Route::put('productos/{producto}/update', 'ProductoController@update')->name('productos.update');
-      Route::delete('productos/{producto}/delete', 'ProductoController@destroy')->name('productos.delete');
+      Route::get('productos/{producto}/destroy', 'ProductoController@destroy')->name('productos.delete');
 
       Route::get('obtener/precio/{producto}', 'ProductoController@getPrecio')->name('productos.precio');
             //CASO DE USO 5 GESTIONAR VENTAS
@@ -82,10 +82,10 @@ Route::group(['middleware' => ['auth']], function () {
       Route::get('ventas', 'VentaController@index')->name('ventas.index');
       Route::get('ventas/create', 'VentaController@create')->name('ventas.create');
       Route::post('ventas/store', 'VentaController@store')->name('ventas.store');
+      Route::get('ventas/show/{venta}','VentaController@show')->name('ventas.show');
       Route::get('ventas/{venta}/edit','VentaController@edit')->name('ventas.edit');
       Route::put('ventas/{venta}/update', 'VentaController@update')->name('ventas.update');
-      Route::delete('ventas/{venta}/delete', 'VentaController@destroy')->name('ventas.delete');
-  
+      Route::get('ventas/reporte/{venta}', 'VentaController@pdf')->name('ventas.pdf');
 
 
      //CASO DE USO 7 GESTIONAR ATENCION
@@ -95,8 +95,8 @@ Route::group(['middleware' => ['auth']], function () {
      Route::get('atenciones/show/{atencion}','AtencionController@show')->name('atenciones.show');
      Route::get('atenciones/{atencion}/edit','AtencionController@edit')->name('atenciones.edit');
      Route::put('atenciones/{atencion}/update', 'AtencionController@update')->name('atenciones.update');
-     Route::delete('atenciones/{atencion}/delete', 'AtencionController@destroy')->name('atenciones.delete');
-
+     Route::get('atenciones/{atencion}/destroy', 'AtencionController@destroy')->name('atenciones.delete');
+     Route::get('atenciones/reporte/{atencion}', 'AtencionController@pdf')->name('atenciones.pdf');
 
        
      //CASO DE USO 8 REPORTES Y ESTADISTICAS
@@ -107,5 +107,9 @@ Route::group(['middleware' => ['auth']], function () {
      Route::get('charts/productos', 'ReporteController@productos')->name('charts.productos');
 
 
+     Route::get('search', 'BuscadorController@index')->name('search.index');
+   //  Route::get('search', 'BuscadorController@buscar')->name('search.index');
+
+   
 });
 

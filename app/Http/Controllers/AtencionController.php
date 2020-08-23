@@ -71,6 +71,8 @@ class AtencionController extends Controller
      */
     public function show(Atencion $atencion)
     {
+        
+        $this->addPageViews();
         return view('atenciones.show',compact('atencion'));
     }
 
@@ -121,6 +123,10 @@ class AtencionController extends Controller
         $notification = 'La atención ha sido eliminada';
         $atencion->delete();
         return \redirect()->route('atenciones.index')->with(compact('notification'));
+    }
+    function pdf(Atencion $atencion){
+        $pdf = \PDF::loadView('atenciones.reporte', ['atencion' => $atencion]);
+        return $pdf->stream();
     }
     private function addPageViews(){
         Auth::user()->countPage(7);

@@ -85,28 +85,29 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-5 col-sm-3 col-md-3 col-xs-12">
-              <div class="form-group">
-                <label for="">Problema(s)</label>
-                {{Form::textarea('problema',null,['class'=>'form-control ' . ( $errors->has('problema') ? ' is-invalid' : '' ),'placeholder'=>'Problema'])}}
-                {!! $errors->first('problema','<span class="invalid-feedback d-block">:message</span>') !!}
+            <div class="row">
+              <div class="col-lg-4 col-sm-3 col-md-3 col-xs-12">
+                <div class="form-group">
+                  <label for="">Problema(s)</label>
+                  {{Form::textarea('problema',null,['class'=>'form-control ' . ( $errors->has('problema') ? ' is-invalid' : '' ),'placeholder'=>'Problema'])}}
+                  {!! $errors->first('problema','<span class="invalid-feedback d-block">:message</span>') !!}
+                </div>
+              </div>
+              <div class="col-lg-4 col-sm-3 col-md-3 col-xs-12">
+                <div class="form-group">
+                  <label for="">Diagnostico</label>
+                  {{Form::textarea('diagnostico',null,['class'=>'form-control ' . ( $errors->has('diagnostico') ? ' is-invalid' : '' ),'placeholder'=>'Diagnostico '])}}
+                 {!! $errors->first('diagnostico','<span class="invalid-feedback d-block">:message</span>') !!}
+                </div>
+              </div>
+              <div class="col-lg-4 col-sm-3 col-md-3 col-xs-12">
+                <div class="form-group">
+                  {{Form::label('tratamiento','Tratamiento:')}}
+                  {{Form::textarea('tratamiento',null,['class'=>'form-control ' . ( $errors->has('tratamiento') ? ' is-invalid' : '' ),'placeholder'=>'Tratamiento '])}}
+                 {!! $errors->first('tratamiento','<span class="invalid-feedback d-block">:message</span>') !!}
+                </div>
               </div>
             </div>
-            <div class="col-lg-5 col-sm-3 col-md-3 col-xs-12">
-              <div class="form-group">
-                <label for="">Diagnostico</label>
-                {{Form::textarea('diagnostico',null,['class'=>'form-control ' . ( $errors->has('diagnostico') ? ' is-invalid' : '' ),'placeholder'=>'Diagnostico '])}}
-               {!! $errors->first('diagnostico','<span class="invalid-feedback d-block">:message</span>') !!}
-              </div>
-            </div>
-            <div class="col-lg-5 col-sm-3 col-md-3 col-xs-12">
-              <div class="form-group">
-                {{Form::label('tratamiento','Tratamiento:')}}
-                {{Form::textarea('tratamiento',null,['class'=>'form-control ' . ( $errors->has('tratamiento') ? ' is-invalid' : '' ),'placeholder'=>'Tratamiento '])}}
-               {!! $errors->first('tratamiento','<span class="invalid-feedback d-block">:message</span>') !!}
-              </div>
-            </div>
-              
              <button type="submit" class="btn btn-success">Actualizar</button>
             {!! Form::close()!!}
       </div>

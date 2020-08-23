@@ -35,6 +35,7 @@
                     <th scope="col">Celular</th>
                     <th scope="col">Direccion</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Tipo</th>
                     <th scope="col">Opciones</th>
                 </tr>
                 </thead>
@@ -48,14 +49,10 @@
                     <th>{{$veterinario->celular}}</th>
                     <th>{{$veterinario->direccion}}</th>
                     <th>{{$veterinario->email}}</th>
-
-                    <td>
-                        <form action="{{route('veterinarios.delete',$veterinario->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
+                    <th>{{$veterinario->rol}}</th>
+                    <td> 
                         <a href="{{route('veterinarios.edit',$veterinario->id)}}" class="btn btn-primary btn-sm">Editar</a>
-                        <button data-toggle="tooltip" title= "Eliminar veterinario" type="submit" type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
+                        <a href="{{route('veterinarios.delete',$veterinario->id)}}" class="btn btn-danger btn-sm">Eliminar</a>
                     </td>
                 </tr>
                 @endforeach

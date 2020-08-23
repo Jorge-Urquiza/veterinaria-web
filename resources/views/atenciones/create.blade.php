@@ -105,10 +105,7 @@
                 </div>
               </div>
             </div>
-          
               <button type="submit" class="btn btn-success">Registrar</button>
-          
-             
         </form>
       </div>
 </div>

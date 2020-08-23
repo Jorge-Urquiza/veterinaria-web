@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBusquedasTable extends Migration
+class CreateBuscarTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateBusquedasTable extends Migration
      */
     public function up()
     {
-        Schema::create('busquedas', function (Blueprint $table) {
+        Schema::create('buscar', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('ruta')->nullable();
+            $table->string('tipo');
+            $table->string('ruta');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateBusquedasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('busquedas');
+        Schema::dropIfExists('buscar');
     }
 }

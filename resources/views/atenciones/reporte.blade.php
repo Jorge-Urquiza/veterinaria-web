@@ -1,17 +1,16 @@
-@extends('layout.app')
+@extends('layout.templatereporte')
+@section('title', 'Atención #' . $atencion->id)
+
 @section('content')
-<div class="card shadow">
-    <div class="card-header border-0">
-      <div class="row align-items-center">
-        <div class="col">
-          <h3 class="mb-0">Detalle de la Atención # {{$atencion->id}}</h3>
-        </div>
-      </div>
-    </div>
+<div class="row page-titles">
+    <p> <strong>Datos de la atención<strong></p>
+
+</div>
+<div class="table-wrapper">
     <div class="card-body" role="alert">
         <ul>
             <li>
-                <strong>Fecha: </strong>{{ $atencion->fecha}}
+                <strong>Fecha de atención: </strong>{{ $atencion->fecha}}
             </li>
             <li>
                  <strong>Hora: </strong>{{ $atencion->hora}}
@@ -22,10 +21,10 @@
            </li>
             
             <li>
-                 <strong>Veterinario: </strong>{{ $atencion->veterinario->nombre}}
+                 <strong>Veterinario: </strong>{{ $atencion->veterinario->nombre . ' ' . $atencion->veterinario->apellido}}
             </li>
             <li>
-                <strong>Tipo: </strong>{{ $atencion->tipo}}
+                <strong>Tipo : </strong>{{ $atencion->tipo}}
            </li>
         </ul>
         <div class="alert alert-success" role="alert">
@@ -38,17 +37,12 @@
                     <strong>Diagnostico: </strong>{{ $atencion->diagnostico}}
                 </li>
                 <li>
-                    <strong>Tratamiento: </strong>{{ $atencion->tratamiento}}
+                    <strong>Tratamiento: </strong>{{ $atencion->tratamiento}} 
                 </li>
      
             </ul>
         </div>
-        <a href="{{route('atenciones.index')}}" class="btn btn-primary">Volver</a>
+        
    </div>
-</div>
-@endsection
-@section('footer')
-<div class="alert alert-dark" role="alert">
-    {{Auth()->user()->showCounter(7)}}
 </div>
 @endsection

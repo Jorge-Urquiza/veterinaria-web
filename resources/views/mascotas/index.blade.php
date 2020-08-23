@@ -9,7 +9,7 @@
               <div class="col text-right">
                 <a  href="{{route('mascotas.create')}}" class="btn btn-sm btn-success">
                     <span>
-                        <i class="fa fa-plus"></i> Registrar Mascota
+                        <i class="fa fa-plus"></i> Nueva Mascota
                     </span>
                 </a>  
               </div>
@@ -42,13 +42,9 @@
                     <th>{{$mascota->color}}</th>
                     <th>{{$mascota->tipo}}</th>
                     <th>{{$mascota->cliente->nombre}}</th>
-                    <td>
-                        <form action="{{route('mascotas.delete',$mascota->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
+                    <td> 
                         <a href="{{route('mascotas.edit',$mascota->id)}}" class="btn btn-primary btn-sm">Editar</a>
-                        <button data-toggle="tooltip" title= "Eliminar Mascota" type="submit" type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
+                        <a href="{{route('mascotas.delete',$mascota->id)}}" class="btn btn-danger btn-sm">Eliminar</a>
                     </td>
                 </tr>
                 @endforeach

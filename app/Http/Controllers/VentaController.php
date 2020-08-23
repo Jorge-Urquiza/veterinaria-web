@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\Venta;
+use Carbon\Carbon;
 use App\Producto;
+use App\DetalleVenta;
 use App\Cliente;
 use App\User;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -18,13 +20,6 @@ class VentaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-/*
-
-problema
-observaciones
-diagnostico
-TIPOS DE ATENCIONES
-*/
 
     public function index()
     {
@@ -59,8 +54,48 @@ TIPOS DE ATENCIONES
      */
     public function store(Request $request)
     {
-        //
-        dd($request->all());
+        
+        try{
+            DB::beginTransaction();
+            $request->validate([
+                'nit'=> 'required',
+                'cliente_id' => 'required',
+                'veterinario_id'=> 'required',
+                'fecha'=> 'required',
+            ]); 
+            $hora = (Carbon::now())->toDateTimeString();
+            $total= 0;
+            $input = $request->all();
+            $input['total']=$total;
+            $input['hora']=$hora;
+            $venta = Venta::create($input);
+
+            $producto_id= $request->get('productoid');
+            $cantidad = $request->get('cantidad');
+            $precio= $request->get('precio');
+           
+            $index = 0;
+            while($index < count($producto_id)){
+                $detalle = new DetalleVenta();
+            
+                $detalle->venta_id = $venta->id;
+                $detalle->producto_id = $producto_id[$index];
+                $detalle->cantidad = $cantidad[$index];
+                $detalle->precio =$precio[$index];
+                $subtotal = $cantidad[$index] * $precio[$index];
+                $detalle->subtotal= $subtotal;
+                $detalle->save(); // guadar N detalles
+                $total = $total + $subtotal;
+                $index++;
+            }
+            $venta->total = $total;
+            $venta->save();
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollback();
+        }
+        $notification = 'Venta registrada Exitosamente!';
+        return redirect()->route('ventas.index')->with(compact('notification'));
     }
 
     /**
@@ -70,8 +105,12 @@ TIPOS DE ATENCIONES
      * @return \Illuminate\Http\Response
      */
     public function show(Venta $venta)
-    {
-        //
+    {  
+        
+        $this->addPageViews();
+        $detalles =DetalleVenta::orderBy('id','DESC')->paginate(10);
+        return view('ventas.show',compact('venta', 'detalles'));
+
     }
 
     /**
@@ -106,6 +145,12 @@ TIPOS DE ATENCIONES
     public function destroy(Venta $venta)
     {
         //
+    }
+    function pdf(Venta $venta){
+        $detalles =DetalleVenta::all();
+
+        $pdf = \PDF::loadView('ventas.reporte',compact('venta', 'detalles'));
+        return $pdf->stream();
     }
     private function addPageViews(){
         Auth::user()->countPage(6);

@@ -30,7 +30,7 @@
             <div class="col-lg-2 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                     <label for="">NIT</label>
-                    <input type="number" name="nombre" class="form-control" placeholder="" 
+                    <input type="number" name="nit" class="form-control" placeholder="" 
                     value="{{old('nit')}}"  required>
                 </div>
             </div>

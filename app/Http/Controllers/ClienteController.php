@@ -5,6 +5,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+//suse App\Buscar;
 //Model
 use App\Cliente;
 
@@ -51,13 +52,14 @@ class ClienteController extends Controller
         $request->validate([
             'nombre'=> 'required',
             'apellido' => 'required',
-            'ci'=> 'unique:clientes',
+            'ci'=> 'required',
             'genero'=> 'required',
             'celular'=> 'required|numeric',
             'edad'=> 'required|numeric',
         ]); 
         $data = $request->all();
         $this->cliente->create($data);
+        \App\Buscar::store($request->get('nombre') . ' ' . $request->get('apellido') ,'cliente','/clientes');
         $notification = 'Cliente registrado Exitosamente!';
         return redirect()->route('clientes.index')->with(compact('notification'));
     }

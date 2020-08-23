@@ -52,16 +52,17 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-       
-    $request->validate([
-        'nombre'=> 'required',
-        'descripcion' => 'required',
-        
-    ]);
-    $data = $request->all();
-    $this->categoria->create($data);
-    $notification = 'Categoria registrada Exitosamente!';
-    return redirect()->route('categorias.index')->with(compact('notification'));
+        dd($request->all());
+        $request->validate([
+            'nombre'=> 'required',
+            'descripcion' => 'required',
+            
+        ]);
+        $data = $request->all();
+        $this->categoria->create($data);
+        \App\Buscar::store($request->get('nombre') ,'categoria','/categorias');
+        $notification = 'Categoria registrada Exitosamente!';
+        return redirect()->route('categorias.index')->with(compact('notification'));
     }
 
     /**

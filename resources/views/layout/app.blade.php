@@ -12,7 +12,7 @@
     <title>Animal Help</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- Custom fonts for this template-->
-    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet"
           type="text/css">
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
@@ -38,7 +38,6 @@
         }
 
     </style>
-
 </head>
 
 
@@ -185,10 +184,14 @@
                     </div>
                     @endif
                 </div>
-                
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    @include('layout.buscador') 
-                </form>
+                    <center>
+                        {!!Form::open(array('url'=>'search','method'=>'GET','autocomplete'=>'off' ,
+                        'class'=> 'd-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search'))!!}
+                        <input id="search-btn" type="text" name="nombre" class="typeahead_2 form-control" placeholder="Buscar datos">
+                        <a class="srh-btn"><i class="ti-close"></i></a>
+                    {!!Form::close()!!}
+                    </center>
+               
                
                 <ul class="navbar-nav ml-auto">
                     <!-- Nav Item - Search Dropdown (Visible Only XS) -->

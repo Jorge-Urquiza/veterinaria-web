@@ -46,7 +46,7 @@ class VeterinarioController extends Controller
             //especificamos al request que ccampo queremos 
             //esto evita que el usuario desde el cliente inserte un input con el role admin por ejemplo
         );
-        
+        \App\Buscar::store($request->get('nombre') . ' ' .$request->get('apellido') ,'veterinario','/veterinarios');
         $notification = 'Veterinario registrado Exitosamente!';
         return \redirect()->route('veterinarios.index')->with(compact('notification'));
     }
@@ -67,7 +67,7 @@ class VeterinarioController extends Controller
         return \redirect()->route('veterinarios.index')->with(compact('notification'));
     }
     function destroy(User $veterinario){
-        $this->veterinario= $vterinario;
+        $this->veterinario= $veterinario;
         $notification = 'El veterinario '.$veterinario->nombre .' ha sido eliminado';
         $this->veterinario->delete();
         return \redirect()->route('veterinarios.index')->with(compact('notification'));

@@ -30,7 +30,7 @@
                     <th scope="col">Cliente</th>
                     <th scope="col">Veterinario</th>
                     <th scope="col">Fecha</th>
-                    <th scope="col">Total (Bs.)</th>
+                    <th scope="col">Total Venta(Bs.)</th>
                     <th scope="col">Opciones</th>
                 </tr>
                 </thead>
@@ -42,18 +42,14 @@
                     @else
                      <th>Sin NIT</th>
                     @endif
-                    <th>{{$venta->cliente_id}}</th>
-                    <th>{{$venta->veterinario_id }}</th>
+                    <th>{{$venta->cliente->nombre . ' ' . $venta->cliente->apellido}}</th>
+                    <th>{{$venta->veterinario->nombre . ' ' . $venta->veterinario->apellido}}</th>
                     <th>{{$venta->fecha}}</th>
                     <th>{{$venta->total}}</th>
-                
                     <td>
-                        <form action="{{route('ventas.delete',$venta->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <a href="{{route('ventas.edit', $venta->id)}}" class="btn btn-primary btn-sm">Editar</a>
-                        <button data-toggle="tooltip" title= "Eliminar veterinario" type="submit" type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
+                        <a href="{{route('ventas.show', $venta->id)}}" class="btn btn-success btn-sm">Ver Detalle</a>
+                        <a href="{{route('ventas.pdf', $venta->id)}}" class="btn btn-info btn-sm">Imprimir</a>
+                        <a href="{{route('ventas.edit',$venta->id)}}" class="btn btn-primary btn-sm">Editar</a>
                     </td>
                 </tr>
                 @endforeach

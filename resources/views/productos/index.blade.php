@@ -41,13 +41,9 @@
                     <th>{{$producto->stock}}</th>
                     <th>{{$producto->categoria->nombre }}</th>
                 
-                    <td>
-                        <form action="{{route('productos.delete',$producto->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <a href="{{route('productos.edit', $producto->id)}}" class="btn btn-primary btn-sm">Editar</a>
-                        <button data-toggle="tooltip" title= "Eliminar veterinario" type="submit" type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
+                    <td> 
+                        <a href="{{route('productos.edit',$producto->id)}}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{{route('productos.delete',$producto->id)}}" class="btn btn-danger btn-sm">Eliminar</a>
                     </td>
                 </tr>
                 @endforeach

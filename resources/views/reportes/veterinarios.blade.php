@@ -2,11 +2,7 @@
 @section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js">
     <div class="container">
-        @if($labels1)
-            <h3>No hay datos para mostrar</h3>
-        @else 
             <h3>Cantidad de atenciones por veterinario</h3>
-        @endif
             <br>
             <div class="row">
                 <canvas id="myChart" width="100%" height="50px"></canvas>

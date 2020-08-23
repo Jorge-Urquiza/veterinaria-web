@@ -68,6 +68,7 @@ class ProductoController extends Controller
     ]);
     $data = $request->all();
     $this->producto->create($data);
+    \App\Buscar::store($request->get('nombre') ,'producto','/productos');
     $notification = 'Producto registrado Exitosamente!';
     return redirect()->route('productos.index')->with(compact('notification'));
     }

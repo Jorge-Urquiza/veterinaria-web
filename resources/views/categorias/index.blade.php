@@ -9,7 +9,7 @@
               <div class="col text-right">
                 <a  href="{{route('categorias.create')}}" class="btn btn-sm btn-success">
                     <span>
-                        <i class="fa fa-plus"></i> Nuevo Categoria
+                        <i class="fa fa-plus"></i> Nueva Categoria
                     </span>
                 </a>  
               </div>
@@ -38,14 +38,11 @@
                     <th>{{$categoria->nombre}}</th>
                     <th>{{$categoria->descripcion }}</th>
                 
-                    <td>
-                        <form action="{{route('categorias.delete',$categoria->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <a href="{{route('categorias.edit', $categoria->id)}}" class="btn btn-primary btn-sm">Editar</a>
-                        <button data-toggle="tooltip" title= "Eliminar veterinario" type="submit" type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
+                    <td> 
+                        <a href="{{route('categorias.edit',$categoria->id)}}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{{route('categorias.delete',$categoria->id)}}" class="btn btn-danger btn-sm">Eliminar</a>
                     </td>
+                </td>
                 </tr>
                 @endforeach
                 </tbody>

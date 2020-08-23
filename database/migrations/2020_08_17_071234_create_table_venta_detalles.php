@@ -14,11 +14,14 @@ class CreateTableVentaDetalles extends Migration
     public function up()
     {
         Schema::create('detalle_venta', function (Blueprint $table) {
+
+          
             $table->increments('id');
             $table->unsignedInteger('venta_id'); //Foreign de cliente
             $table->unsignedInteger('producto_id'); //Foreign de veterinario
             $table->integer('cantidad');
             $table->double('precio');
+            $table->double('subtotal');
             $table->foreign('venta_id')
             ->references('id')
             ->on('ventas');

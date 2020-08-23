@@ -9,7 +9,7 @@
               <div class="col text-right">
                 <a  href="{{route('atenciones.create')}}" class="btn btn-sm btn-success">
                     <span>
-                        <i class="fa fa-plus"></i> Nuevo atencion
+                        <i class="fa fa-plus"></i> Nueva atencion
                     </span>
                 </a>  
               </div>
@@ -41,16 +41,14 @@
                     <th>{{$atencion->hora }}</th>
                     <th>{{$atencion->tipo}}</th>
                     <th>{{$atencion->mascota->nombre}}</th>
-                    <th>{{$atencion->veterinario->nombre }}</th>
-                    <td>
-                        <form action="{{route('atenciones.delete',$atencion->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
+                    <th>{{$atencion->veterinario->nombre . ' ' . $atencion->veterinario->apellido}}</th>
+                    <td> 
                         <a href="{{route('atenciones.show', $atencion->id)}}" class="btn btn-success btn-sm">Ver</a>
-                        <a href="{{route('atenciones.edit', $atencion->id)}}" class="btn btn-primary btn-sm">Editar</a>
-                        <button data-toggle="tooltip" title= "Eliminar Atencion" type="submit" type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
+                        <a href="{{route('atenciones.pdf', $atencion->id)}}" class="btn btn-info btn-sm">imprimir</a>
+                        <a href="{{route('atenciones.edit',$atencion->id)}}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{{route('atenciones.delete',$atencion->id)}}" class="btn btn-danger btn-sm">Eliminar</a>
                     </td>
+                   
                 </tr>
                 @endforeach
                 </tbody>
