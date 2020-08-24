@@ -8,7 +8,7 @@
     <style>
         html,
         body {
-            background-color: #d8f5f2;
+            background-color: #d1e2eb;
             font-family: 'Helvetica',
                 sans-serif;
             font-weight: 200;

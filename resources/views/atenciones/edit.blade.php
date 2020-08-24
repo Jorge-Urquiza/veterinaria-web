@@ -72,9 +72,11 @@
               </div>
               <div class="col-lg-3 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
-                    <label for="">Dueño mascota</label>
-                    <input type="text" name="nombre" class="form-control" disabled
-                       required id="dueño" >
+                    <div class="form-group">
+                        <label for="">Cliente</label>
+                        <input type="text" name="cliente" class="form-control" 
+                           required id="dueño" >
+                    </div>
                 </div>
               </div>
               <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">

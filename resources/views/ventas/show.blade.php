@@ -42,7 +42,7 @@
         </div>    
 
       
-            <p> <strong>Acerca de la la venta <strong></p>
+                <p> <strong>Acerca de la la venta <strong></p>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>

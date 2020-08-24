@@ -48,14 +48,17 @@
                     <th>{{$venta->total}}</th>
                     <td>
                         <a href="{{route('ventas.show', $venta->id)}}" class="btn btn-success btn-sm">Ver Detalle</a>
-                        <a href="{{route('ventas.pdf', $venta->id)}}" class="btn btn-info btn-sm">Imprimir</a>
                         <a href="{{route('ventas.edit',$venta->id)}}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{{route('ventas.pdf', $venta->id)}}" class="btn btn-info btn-sm">Imprimir</a>
+                        
                     </td>
                 </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
+        <br>
+
         <div class="card-footer clearfix">
             {{ $ventas->links() }}
             <p class="text-muted">Mostrando <strong>{{ $ventas->count() }}</strong> registros de <strong>{{$ventas->total() }}</strong> totales</p>

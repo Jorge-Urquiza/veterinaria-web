@@ -20,8 +20,10 @@ class AtencionController extends Controller
    
     public function index()
     {
+
         $this->addPageViews();
         $atenciones= Atencion::orderBy('id','DESC')->paginate(10);
+    
         return view('atenciones.index',compact('atenciones'));
     }
 

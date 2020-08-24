@@ -28,8 +28,9 @@ class Atencion extends Model
      protected $dates =['deleted_at'];
 
      function mascota(){
-        return $this->belongsTo(Mascota::class);
-     }
+      return $this->belongsTo(Mascota::class, 'id');
+    
+   }
      function veterinario(){
       return $this->belongsTo(User::class);
     }

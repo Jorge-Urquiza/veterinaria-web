@@ -25,27 +25,35 @@
         <div class="table-responsive">
             <table class="table">
                 <thead>
+                    @php
+                     $cont=1;   
+                    @endphp
                 <tr>
-                    <th scope="col">Nombre</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre mascota</th>
+                    <th scope="col">Dueño Mascota</th>
                     <th scope="col">Raza</th>
                     <th scope="col">Color</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Dueño</th>
+                    <th scope="col">Tipo</th>                  
                     <th scope="col">Opciones</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($mascotas as $mascota)
                 <tr>
+                    <th>{{$cont}}</th>
                     <th>{{$mascota->nombre}}</th>
+                    <th>{{$mascota->cliente->nombre .' '.  $mascota->cliente->apellido}}</th>
                     <th>{{$mascota->raza}}</th>
                     <th>{{$mascota->color}}</th>
                     <th>{{$mascota->tipo}}</th>
-                    <th>{{$mascota->cliente->nombre}}</th>
                     <td> 
                         <a href="{{route('mascotas.edit',$mascota->id)}}" class="btn btn-primary btn-sm">Editar</a>
                         <a href="{{route('mascotas.delete',$mascota->id)}}" class="btn btn-danger btn-sm">Eliminar</a>
                     </td>
+                    @php
+                     $cont++;   
+                    @endphp
                 </tr>
                 @endforeach
                 </tbody>

@@ -121,7 +121,11 @@ class VentaController extends Controller
      */
     public function edit(Venta $venta)
     {
-        //
+        $this->addPageViews();
+        $clientes =Cliente::orderBy('nombre')->pluck('nombre','id');
+        $detalles =DetalleVenta::orderBy('id','DESC')->paginate(10);
+        $veterinarios =User::orderBy('nombre')->pluck('nombre','id');
+        return view('ventas.edit',compact('venta', 'detalles' ,'veterinarios', 'clientes' ));
     }
 
     /**
@@ -134,6 +138,21 @@ class VentaController extends Controller
     public function update(Request $request, Venta $venta)
     {
         //
+
+        $request->validate([
+            'nit'=> 'required',
+            'fecha' => 'required',
+            'hora'=> 'required',
+            'veterinario_id'=> 'required|numeric',
+            'cliente_id'=> 'required|numeric',
+          
+        ]);
+        
+         $data=  $request->all();
+         $venta->fill($data);
+         $venta->save(); // para guardar los cambios despues de haber usado el "fill" 
+         $notification = 'Venta modificado Exitosamente!';
+        return redirect()->route('ventas.index')->with(compact('notification'));
     }
 
     /**
