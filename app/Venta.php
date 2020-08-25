@@ -26,6 +26,7 @@ class Venta extends Model
    
     
     protected $dates =['deleted_at'];
+    
     function veterinario(){
         return $this->belongsTo(User::class);
      }
