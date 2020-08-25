@@ -3,13 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\softDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Cliente extends Model
 {
-    //
-    use SoftDeletes;
-
+   
     protected $primaryKey = 'id';
     protected $table ='clientes';
 
@@ -21,7 +19,7 @@ class Cliente extends Model
         'celular',
         'edad'
     ]; 
-    protected $dates =['deleted_at'];
+  
 
     function mascotas(){
         return $this->hasMany(Mascota::class);

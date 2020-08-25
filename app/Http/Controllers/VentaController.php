@@ -76,18 +76,20 @@ class VentaController extends Controller
            
             $index = 0;
             while($index < count($producto_id)){
-                $detalle = new DetalleVenta();
-            
-                $detalle->venta_id = $venta->id;
-                $detalle->producto_id = $producto_id[$index];
-                $detalle->cantidad = $cantidad[$index];
-                $detalle->precio =$precio[$index];
+
+                $data['venta_id']=$venta->id;
+                $data['producto_id']= $producto_id[$index];
+                $data['cantidad']=$cantidad[$index];
+                $data['precio']= $precio[$index];
                 $subtotal = $cantidad[$index] * $precio[$index];
-                $detalle->subtotal= $subtotal;
-                $detalle->save(); // guadar N detalles
-                $total = $total + $subtotal;
+                $data['subtotal']=$subtotal;
+                $total=$total + $subtotal;
+
+                DetalleVenta::create($data);
+             
                 $index++;
             }
+
             $venta->total = $total;
             $venta->save();
             DB::commit();
@@ -104,40 +106,28 @@ class VentaController extends Controller
      * @param  \App\Venta  $venta
      * @return \Illuminate\Http\Response
      */
-    public function show(Venta $venta)
-    {  
-        
-        $this->addPageViews();
-        $detalles =DetalleVenta::orderBy('id','DESC')->paginate(10);
-        return view('ventas.show',compact('venta', 'detalles'));
 
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Venta  $venta
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Venta $venta)
     {
         $this->addPageViews();
         $clientes =Cliente::orderBy('nombre')->pluck('nombre','id');
-        $detalles =DetalleVenta::orderBy('id','DESC')->paginate(10);
+        $detalles =DetalleVenta::where('venta_id', $venta->id)->orderBy('id','DESC')->paginate(10);
         $veterinarios =User::orderBy('nombre')->pluck('nombre','id');
         return view('ventas.edit',compact('venta', 'detalles' ,'veterinarios', 'clientes' ));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Venta  $venta
-     * @return \Illuminate\Http\Response
-     */
+    public function show(Venta $venta)
+    {  
+        
+        $this->addPageViews();
+
+        $detalles =DetalleVenta::where('venta_id', $venta->id)->orderBy('id','DESC')->paginate(10);
+        return view('ventas.show',compact('venta', 'detalles'));
+
+    }
+
     public function update(Request $request, Venta $venta)
     {
-        //
 
         $request->validate([
             'nit'=> 'required',
@@ -163,7 +153,10 @@ class VentaController extends Controller
      */
     public function destroy(Venta $venta)
     {
-        //
+        
+        $notification = 'La venta con id: '. $venta->id  . ' ha sido eliminada';
+        $venta->delete();
+        return \redirect()->route('ventas.index')->with(compact('notification'));
     }
     function pdf(Venta $venta){
         $detalles =DetalleVenta::all();

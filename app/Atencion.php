@@ -3,13 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 class Atencion extends Model
 {
-    //
-     //
-     use SoftDeletes;
+    
 
      protected $primaryKey = 'id';
      protected $table ='atenciones';
@@ -25,10 +22,9 @@ class Atencion extends Model
      ];
      
      
-     protected $dates =['deleted_at'];
 
      function mascota(){
-      return $this->belongsTo(Mascota::class, 'id');
+      return $this->belongsTo(Mascota::class);
     
    }
      function veterinario(){

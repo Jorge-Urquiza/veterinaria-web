@@ -23,13 +23,19 @@ class CreateTableAtenciones extends Migration
             $table->string('tratamiento')->nullable();
 
             $table->unsignedInteger('veterinario_id');
-            $table->foreign('veterinario_id')->references('id')->on('users');
+            $table->foreign('veterinario_id')->references('id')
+            ->on('users')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
 
             $table->unsignedInteger('mascota_id');
-            $table->foreign('mascota_id')->references('id')->on('mascotas');
+            $table->foreign('mascota_id')->references('id')
+            ->on('mascotas')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             
             $table->timestamps();
-            $table->softDeletes();
+           
         });
     }
 

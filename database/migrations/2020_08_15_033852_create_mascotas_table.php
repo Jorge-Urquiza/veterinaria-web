@@ -22,9 +22,11 @@ class CreateMascotasTable extends Migration
             $table->unsignedInteger('cliente_id');
             $table->foreign('cliente_id')
             ->references('id')
-            ->on('clientes');
+            ->on('clientes')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
+          
         });
     }
 

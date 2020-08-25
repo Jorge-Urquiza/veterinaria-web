@@ -44,10 +44,15 @@
                     <th>{{$cliente->genero}}</th>
                     <th>{{$cliente->celular}}</th>
                     <th>{{$cliente->edad}}</th>
-                    <td> 
-                        <a href="{{route('clientes.edit',$cliente->id)}}" class="btn btn-primary btn-sm">Editar</a>
-                        <a href="{{route('clientes.delete',$cliente->id)}}" class="btn btn-danger btn-sm">Eliminar</a>
+                    <td>
+                        <form action="{{route('clientes.delete',$cliente->id)}}" method="post">
+                          @csrf
+                          @method('DELETE')
+                          <a href="{{route('clientes.edit',$cliente->id)}}" class="btn btn-primary btn-sm">Editar</a>
+                          <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
                     </td>
+                    
                 </tr>
                 @endforeach
                 </tbody>

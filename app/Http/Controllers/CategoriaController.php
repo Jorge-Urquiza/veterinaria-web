@@ -52,7 +52,7 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+    
         $request->validate([
             'nombre'=> 'required',
             'descripcion' => 'required',

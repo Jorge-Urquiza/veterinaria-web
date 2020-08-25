@@ -37,11 +37,15 @@
                 <tr>
                     <th>{{$categoria->nombre}}</th>
                     <th>{{$categoria->descripcion }}</th>
-                
-                    <td> 
-                        <a href="{{route('categorias.edit',$categoria->id)}}" class="btn btn-primary btn-sm">Editar</a>
-                        <a href="{{route('categorias.delete',$categoria->id)}}" class="btn btn-danger btn-sm">Eliminar</a>
+                    <td>
+                        <form action="{{route('categorias.delete',$categoria->id)}}" method="post">
+                          @csrf
+                          @method('DELETE')
+                          <a href="{{route('categorias.edit',$categoria->id)}}" class="btn btn-primary btn-sm">Editar</a>
+                          <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
                     </td>
+                    
                 </td>
                 </tr>
                 @endforeach

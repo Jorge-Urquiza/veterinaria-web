@@ -47,10 +47,15 @@
                     <th>{{$mascota->raza}}</th>
                     <th>{{$mascota->color}}</th>
                     <th>{{$mascota->tipo}}</th>
-                    <td> 
-                        <a href="{{route('mascotas.edit',$mascota->id)}}" class="btn btn-primary btn-sm">Editar</a>
-                        <a href="{{route('mascotas.delete',$mascota->id)}}" class="btn btn-danger btn-sm">Eliminar</a>
+                    <td>
+                        <form action="{{route('mascotas.delete',$mascota->id)}}" method="post">
+                          @csrf
+                          @method('DELETE')
+                          <a href="{{route('mascotas.edit',$mascota->id)}}" class="btn btn-primary btn-sm">Editar</a>
+                          <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
                     </td>
+                    
                     @php
                      $cont++;   
                     @endphp

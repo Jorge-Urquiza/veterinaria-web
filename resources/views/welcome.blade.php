@@ -34,12 +34,12 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/">Inicio</a>
+              <a class="nav-link"href="{{route('inicio')}}">Inicio</a>
             </li>
-            <a class="nav-link" href="/contact">Contacto</a>
+            <a class="nav-link" href="{{route('contacto')}}">Contacto</a>
             </li>
             <li>
-                <a class="nav-link" href="/login">Sistema</a>
+                <a class="nav-link" href="{{route('login')}}">Sistema</a>
             </li>
           </ul>
         </div>
@@ -59,22 +59,19 @@
           <!-- Slide One - Set the background image for this slide in the line below -->
           <div class="carousel-item active" style="background-image: url('{{asset('webpage/images/carrusel1.jpg')}}')">
             <div class="carousel-caption d-none d-md-block">
-              <h3>Veterinaria </h3>
-              <p>Animal help</p>
+              
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
           <div class="carousel-item" style="background-image: url('{{asset('webpage/images/carrusel2.jpg')}}')">
             <div class="carousel-caption d-none d-md-block">
-              <h3>Veterinaria </h3>
-              <p>Animal help</p>
+             
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
           <div class="carousel-item" style="background-image: url('{{asset('webpage/images/carrusel3.jpg')}}')">
             <div class="carousel-caption d-none d-md-block">
-              <h3>Veterinaria </h3>
-              <p>Animal help</p>
+              
             </div>
           </div>
         </div>
@@ -96,10 +93,12 @@
       <!-- Features Section -->
       <div class="row">
         <div class="col-lg-6">
-          <h2 style="text-align: center;">Veterinaria</h2>
-          <h6><strong>Animal Help </strong>es una veterina especializada:</h3>
-          <p style="text-align: justify;">En animales domesticos
+          <h2 style="text-align: center;">Animal Help </h2>
+          <h6><strong>Nosotros:</strong></h3>
+          <p style="text-align: justify;">Animal Help es una veterinaria dedicada a la atención de su mascota, encontrando lo que necesita, con veterinarios dedicados para darle una atención personalizada para su mascota. Así mismo contamos con productos y medicamentos de la mejor calidad para mantener completamente saludable a su mascota. Finalmente contamos con peluquería y baño para su mascota, para que esta pueda lucir radiante y feliz.
           </p>
+          <h6><strong>Horarios en pandemia:</strong></h3>
+            <h6>Lunes a Viernes de 10:00 AM a 4:00 pm.</h3>
         </div>
         <div class="col-lg-6">
           <img id="myImg" class="img-fluid rounded" src="{{asset('webpage/images/img1.jpg')}}" alt="">
@@ -125,11 +124,11 @@
       <!-- Call to Action Section -->
       <div class="row mb-6">
         <div class="col-md-6">
-          <a class="btn btn-lg btn-secondary btn-block" style="background: #3b5998" href="https://www.facebook.com" target="_black">Facebook</a>
+          <a class="btn btn-lg btn-secondary btn-block" style="background: #3b5998" href="https://www.facebook.com/Veterinaria-animal-help-1221998187913089/" target="_black">Facebook</a>
           <br>
         </div>
         <div class="col-md-6">
-          <a class="btn btn-lg btn-secondary btn-block" style="background: #25D366" href="https://wa.me/78066791" target="_black">Whatsapp</a>
+          <a class="btn btn-lg btn-secondary btn-block" style="background: #25D366" href="https://wa.me/72698811" target="_black">Whatsapp</a>
           <br>
         </div>
       </div>

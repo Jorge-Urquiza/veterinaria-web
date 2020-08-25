@@ -33,12 +33,12 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="/">Inicio</a>
+                <a class="nav-link"href="{{route('inicio')}}">Inicio</a>
               </li>
-              <a class="nav-link" href="/contact">Contacto</a>
+              <a class="nav-link" href="{{route('contacto')}}">Contacto</a>
               </li>
               <li>
-                  <a class="nav-link" href="/login">Sistema</a>
+                  <a class="nav-link" href="{{route('login')}}">Sistema</a>
               </li>
             </ul>
         </div>
@@ -50,8 +50,9 @@
       <br>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="/">Inicio</a>
+          <a href="{{route('inicio')}}">Inicio</a>
         </li>
+        
         <li class="breadcrumb-item active">Contacto</li>
       </ol>
 
@@ -60,51 +61,58 @@
         <!-- Map Column -->
         <div class="col-lg-8 mb-4">
           <!-- script de google maps -->
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3799.569598289121!2d-63.17480368551668!3d-17.76490777922303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93f1e7db73dd1a51%3A0xf389ffebc327a372!2sCondominio+Torre+Los+Cusis!5e0!3m2!1ses!2sbo!4v1539693704573" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3799.148157485732!2d-63.166301250458!3d-17.784732735252!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x562c7c4c7be046b7!2sVETERINARIA%20ANIMAL%20HELP!5e0!3m2!1ses!2sbo!4v1598319133159!5m2!1ses!2sbo" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+         
         </div>
         <!-- Contact Details Column -->
         <div class="col-lg-4 mb-4">
           <h3>Detalles de Contacto</h3>
           <br>
           <p>
-            <strong>Oficina Central:</strong> 
+            <strong>Dirección:</strong> 
             <br>
-            Av. Los Cusis Nº 2120 Edif. "Los Cusis" Piso 3 oficina 3C.
+              Prolongación Ñuflo de Chávez #1080, a dos cuadras del 2do anillo
           </p>
           <p>
             <strong>Telefono:</strong> 
             <br>
-            <a href="tel:333403344">+591 33-403344</a>
+
+            <a href="tel:333403344">+591 72698811</a>
+            <br>
+            <a href="tel:333403344">+591 77316951</a>
           </p>
           
             <strong>Email:</strong>
             <br>
-            <strong>Gerente General:</strong><h6>Lawrence Hurtado  G.</h6>
-            <a href="mailto:lhurtado@alatrans.com.bo">lhurtado@alatrans.com.bo</a>
+            <a href="mailto:lhurtado@alatrans.com.bo">animalhelp@gmail.com</a>
             <br>
-            <strong>Encargada Comercial:</strong><h6>Valeria Lewensztain O.</h6>
-            <a href="mailto:vlewensztain@alatrans.com.bo">vlewensztain@alatrans.com.bo
-            </a>
+
+            <strong>Gerente General:</strong>
+            <ul>
+              <li><h6>Lic. MVZ Tatiana Furtner Sánchez</h6> </li>
+              <li><h6>Lic. Zoot Federico Andrés Bottani Schayman</h6> </li>
+            </ul>
+   
           
           <p>
             <strong>Horario de atencion:</strong> 
             <br>
-            <small><strong>Lunes a Viernes:</strong></small> <br>
-            8:00 am a 12:30 pm <br>
-            14:30 pm a 18:30 pm
+            <small><strong>Lunes a Sábado:</strong></small> <br>
+            9:00 am a 1:00 pm <br>
+            2:30 pm a 7:00 pm 
             <br>
-            <small><strong>Sabado:</strong></small> <br>
-            8:00 am a 12:30 pm
+            
           </p>
           <p>
             <strong>Facebook</strong>: 
             <br>
-            <a href="https://www.facebook.com/ImprisolEpson/" target="_blank">Fan Page IMPRISOL SRL</a> 
+            <a href="https://www.facebook.com/Veterinaria-animal-help-1221998187913089/" target="_blank">Fan Pag Veterinaria Animal Help</a> 
           </p>
           <p>
             <strong>Whatsapp Business</strong>: 
             <br>
-            <a href="https://wa.me/59178066791" target="_blank">Whatsapp</a> 
+            <a href="https://wa.me/59172698811" target="_blank">Whatsapp</a> 
           </p>
         </div>
       </div>

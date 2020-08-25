@@ -24,12 +24,16 @@ class CreateTableVentaDetalles extends Migration
             $table->double('subtotal');
             $table->foreign('venta_id')
             ->references('id')
-            ->on('ventas');
+            ->on('ventas')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->foreign('producto_id')
             ->references('id')
-            ->on('productos');
+            ->on('productos')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
+         
         });
     }
 

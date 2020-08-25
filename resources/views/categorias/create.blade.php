@@ -47,16 +47,15 @@
     boton= document.getElementById('btn_guardar');
     
 	var validarNombre= function(e){
-    var x = formulario.nombre.value.length;
-    alert(x);
-		if(formulario.nombre.value== 0){
-      alert("Completar el campo nombre ");
+   
+		if(formulario.nombre.value.length < 3){
+      alert("El nombre categoria debe contener al menos 3 caracteres ");
       e.preventDefault();
 		}
   };
   var validarDescripcion= function(e){
-		if(formulario.descripcion.value==0){
-      alert("Completar el campo descripcion ");
+		if(formulario.nombre.value.length < 3){
+      alert("La descripcion debe contener al menos 5 caracteres ");
       e.preventDefault();
 		}
 	};

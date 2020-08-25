@@ -22,7 +22,7 @@ class CreateClientesTable extends Migration
             $table->string('celular');
             $table->smallInteger('edad');
             $table->timestamps();
-            $table->softDeletes();
+           
         });
     }
 

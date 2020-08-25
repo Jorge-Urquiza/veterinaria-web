@@ -24,12 +24,16 @@ class CreateVentasTable extends Migration
             // FK
             $table->foreign('cliente_id')
             ->references('id')
-            ->on('clientes');
+            ->on('clientes')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->foreign('veterinario_id')
             ->references('id')
-            ->on('users');
+            ->on('users')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
+          
         });
     }
 

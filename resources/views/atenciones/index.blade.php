@@ -42,12 +42,19 @@
                     <th>{{$atencion->tipo}}</th>
                     <th>{{$atencion->mascota->nombre}}</th>
                     <th>{{$atencion->veterinario->nombre . ' ' . $atencion->veterinario->apellido}}</th>
-                    <td> 
-                        <a href="{{route('atenciones.show', $atencion->id)}}" class="btn btn-success btn-sm">Ver</a>
-                        <a href="{{route('atenciones.pdf', $atencion->id)}}" class="btn btn-info btn-sm">imprimir</a>
-                        <a href="{{route('atenciones.edit',$atencion->id)}}" class="btn btn-primary btn-sm">Editar</a>
-                        <a href="{{route('atenciones.delete',$atencion->id)}}" class="btn btn-danger btn-sm">Eliminar</a>
+                    <td>
+                        <form action="{{route('atenciones.delete',$atencion->id)}}" method="post">
+                          @csrf
+                          @method('DELETE')
+                          <a href="{{route('atenciones.show', $atencion->id)}}" class="btn btn-success btn-sm">Ver</a>
+                          <a href="{{route('atenciones.pdf', $atencion->id)}}" class="btn btn-info btn-sm">imprimir</a>
+                          <a href="{{route('atenciones.edit',$atencion->id)}}" class="btn btn-primary btn-sm">Editar</a>
+                          @if(auth()->user()->rol === 'director')
+                          <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                          @endif
+                        </form>
                     </td>
+                  
                    
                 </tr>
                 @endforeach

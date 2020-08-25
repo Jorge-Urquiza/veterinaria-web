@@ -50,10 +50,16 @@
                     <th>{{$veterinario->direccion}}</th>
                     <th>{{$veterinario->email}}</th>
                     <th>{{$veterinario->rol}}</th>
-                    <td> 
-                        <a href="{{route('veterinarios.edit',$veterinario->id)}}" class="btn btn-primary btn-sm">Editar</a>
-                        <a href="{{route('veterinarios.delete',$veterinario->id)}}" class="btn btn-danger btn-sm">Eliminar</a>
+                    <td>
+                        <form action="{{route('veterinarios.delete',$veterinario->id)}}" method="post">
+                          @csrf
+                          @method('DELETE')
+                          <a href="{{route('veterinarios.delete',$veterinario->id)}}" class="btn btn-primary btn-sm">Editar</a>
+                          <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
                     </td>
+                    
+                    
                 </tr>
                 @endforeach
                 </tbody>

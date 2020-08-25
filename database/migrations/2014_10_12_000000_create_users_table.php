@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->enum('rol',['director', 'empleado' ])->default('empleado');
             $table->rememberToken();
             $table->timestamps();
-            $table->softDeletes();
+          
         });
     }
 
