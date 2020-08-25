@@ -9,6 +9,7 @@
         </div>
       </div>
     </div>
+   
     <div class="card-body" role="alert">
         <div id="container"></div>
    </div>
@@ -24,34 +25,34 @@
 <script>
     //HIGHCHARTS WITH DATA LABELS
     Highcharts.chart('container', {
-    chart: {
-        type: 'line'
-    },
-    title: {
-        text: 'Atenciones registradas mensualmente'
-    },
-    xAxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    },
-    yAxis: {
+        chart: {
+            type: 'line'
+        },
         title: {
-            text: 'Cantidad de atenciones'
+            text: 'Atenciones registradas mensualmente'
+        },
+        xAxis: {
+            categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+        yAxis: {
+            title: {
+                text: 'Cantidad de atenciones'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: 'atenciones registradas',
+            data: {!! $counts !!},
         }
-    },
-    plotOptions: {
-        line: {
-            dataLabels: {
-                enabled: true
-            },
-            enableMouseTracking: false
-        }
-    },
-    series: [{
-        name: 'atenciones registradas',
-        data: @json($counts)
-    }
-    ]
-});
+        ]
+    });
 </script>
 @endpush
 @section('footer')

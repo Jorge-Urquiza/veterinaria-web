@@ -126,7 +126,7 @@ class AtencionController extends Controller
         $atencion->delete();
         return \redirect()->route('atenciones.index')->with(compact('notification'));
     }
-    function pdf(Atencion $atencion){
+    function imprimir(Atencion $atencion){
         $pdf = \PDF::loadView('atenciones.reporte', ['atencion' => $atencion]);
         return $pdf->stream();
     }

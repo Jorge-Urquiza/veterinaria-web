@@ -49,7 +49,7 @@
               {{Form::label('dueño','Dueño:')}}
               {!! Form::select('cliente_id', $clientes, null, ['class' => 'form-control selectpicker', 
                'placeholder'=>'Seleccionar dueño', 'data-live-search' => 'true' , 
-                                           'id' => 'producto_id']) !!}
+                                           'id' => 'producto_id' ,  'required' => true]) !!}
             </div>  
              <button type="submit" class="btn btn-success">Registrar</button>
         </form>

@@ -97,7 +97,7 @@ Route::group(['middleware' => ['auth']], function () {
       Route::get('ventas/{venta}/edit','VentaController@edit')->name('ventas.edit');
       Route::put('ventas/{venta}/update', 'VentaController@update')->name('ventas.update');
       Route::delete('ventas/{venta}/delete', 'VentaController@destroy')->name('ventas.delete');
-      Route::get('ventas/reporte/{venta}', 'VentaController@pdf')->name('ventas.pdf');
+      Route::get('ventas/reporte/{venta}', 'VentaController@imprimir')->name('ventas.pdf');
 
 
      //CASO DE USO 7 GESTIONAR ATENCION
@@ -108,7 +108,7 @@ Route::group(['middleware' => ['auth']], function () {
      Route::get('atenciones/{atencion}/edit','AtencionController@edit')->name('atenciones.edit');
      Route::put('atenciones/{atencion}/update', 'AtencionController@update')->name('atenciones.update');
      Route::delete('atenciones/{atencion}/delete', 'AtencionController@destroy')->name('atenciones.delete');
-     Route::get('atenciones/reporte/{atencion}', 'AtencionController@pdf')->name('atenciones.pdf');
+     Route::get('atenciones/reporte/{atencion}', 'AtencionController@imprimir')->name('atenciones.pdf');
 
        
      //CASO DE USO 8 REPORTES Y ESTADISTICAS + Personalizacion

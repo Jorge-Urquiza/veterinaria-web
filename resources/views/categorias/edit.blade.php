@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Descripcion</label>
-              <textarea name ="descripcion" class="form-control" 
+              <textarea name ="descripcion" class="form-control"  required
               id="exampleFormControlTextarea1" rows="3" >{{old('descripcion',$categoria->descripcion)}}
             </textarea>
             </div>

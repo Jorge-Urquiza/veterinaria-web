@@ -35,8 +35,8 @@
                 <input type="text" name="apellido" class="form-control" placeholder="Ingresa el Nombre" value="{{old('apellido')}}" required >
             </div>
             <div class="form-group">
-               <label for="">Documento de Identidad</label>
-                <input type="number" name="ci" class="form-control" placeholder="Ingresa tu CI"  value="{{old('ci')}}" >
+                <label for="">Documento de Identidad</label>
+                <input type="number" name="ci" class="form-control" placeholder="Ingresa tu CI"  value="{{old('ci')}}" required >
              </div>
              <div class="form-group">
               {{Form::label('genero','Genero:')}}

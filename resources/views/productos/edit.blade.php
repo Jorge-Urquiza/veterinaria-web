@@ -48,7 +48,7 @@
               <div class="form-group">
                   {{Form::label('categoria_id','Categoria:')}}
                   {!! Form::select('categoria_id', $categorias, null, ['class' => 'form-control selectpicker',
-                                              'title' => 'Seleccionar', 'data-live-search' => 'true']) !!}
+                                              'title' => 'Seleccionar', 'data-live-search' => 'true' ,  'required' => true]) !!}
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-success">Actualizar</button>

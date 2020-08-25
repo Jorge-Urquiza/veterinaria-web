@@ -19,14 +19,18 @@ class ReporteController extends Controller
     public function atenciones(){
         $this->addPageViews();
         $montlyCounts=Atencion::select(
-            DB::raw('MONTH(fecha) as month'), 
-            DB::raw('COUNT(1) as count '))
+            DB::raw('EXTRACT(MONTH FROM fecha) AS month'), 
+            DB::raw('COUNT(1) as cantidad'))
          ->groupBy('month')->get()->toArray();
+      
         $counts=array_fill(0,12,0); // inicio, fin y valores que quiero setear al array
+    
         foreach($montlyCounts as $montlyCount){
             $index=$montlyCount['month']-1;
-            $counts[$index]= $montlyCount['count'];
+            $counts[$index]= (int)$montlyCount['cantidad']; 
         }
+     
+        $counts = json_encode($counts);
         return view('reportes.atenciones',compact('counts'));
 
     }

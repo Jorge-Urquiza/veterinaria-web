@@ -28,11 +28,11 @@
             <div class="form-group">
               <label for="">Nombre</label>
               <input  type="text" name="nombre" id="nombre" 
-              class="form-control" placeholder="Ingresa el Nombre" value="{{old('nombre')}}"  >
+              class="form-control" placeholder="Ingresa el Nombre" value="{{old('nombre')}}" required >
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Descripcion</label>
-              <textarea name ="descripcion" class="form-control" id="descripcion" rows="3" ></textarea>
+              <textarea name ="descripcion" class="form-control" id="descripcion" rows="3" required></textarea>
             </div>
              <button type="submit" class="btn btn-success" id="btn_guardar">Registrar</button>
         </form>

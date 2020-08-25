@@ -35,7 +35,7 @@
             <div class="col-lg-2 col-sm-6 col-md-6 col-xs-12">
               <div class="form-group">
                   <label for="">Fecha</label>
-                  {{Form::date('fecha', \Carbon\Carbon::now() , ['class'=> 'form-control']) }}
+                  {{Form::date('fecha', \Carbon\Carbon::now() , ['class'=> 'form-control' , 'required'=>true]) }}
               </div>
             </div>
             <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
@@ -189,8 +189,8 @@ var subtotal=[];
  }
  function limpiar() {
     $('#producto_id option').prop('selected', function() {
-                return this.defaultSelected;
-            });
+        return this.defaultSelected;
+    });
     $('#pcompra').val("");
     $('#pcantidad').val("");
     $('#pventa').val("");
