@@ -122,7 +122,8 @@ class VeterinarioController extends Controller
         $this->veterinario->save();
         return redirect('home');
     }
-    function asginarRol(User $veterinario){
+    function asignarRol(User $veterinario){
+    
         $veterinario->rol="director";
         $veterinario->save(); //
         $notification = 'El rol del veterinario'.$veterinario->nombre . ' ' . $veterinario->apellido . 'ha sido actualizado';

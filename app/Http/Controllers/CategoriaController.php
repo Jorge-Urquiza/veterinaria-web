@@ -122,10 +122,9 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        //
-        $this->cliente= $categoria;
+        
         $notification = 'La categoria: '.$categoria->nombre .' ha sido eliminada';
-        $this->cliente->delete();
+        $categoria->delete();
         return \redirect()->route('categorias.index')->with(compact('notification'));
     }
     private function addCountVisit(){

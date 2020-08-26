@@ -43,7 +43,7 @@
                   {{Form::label('veterinario','Veterinario:')}}
                   {!! Form::select('veterinario_id', $veterinarios, null, ['placeholder' => 'Seleccionar Veterinario'
                   ,'class' => 'form-control selectpicker',
-                                              'title' => 'Seleccionar', 'data-live-search' => 'true' ,  'required' => true]) !!}
+                                             'data-live-search' => 'true' ,  'required' => true]) !!}
                 </div>  
             </div>
             <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
@@ -51,7 +51,7 @@
                 {{Form::label('cliente','Cliente (Comprador):')}}
                 {!! Form::select('cliente_id', $clientes, null, [ 'placeholder' => 'Seleccionar Cliente'
                 ,'class' => 'form-control selectpicker',
-                                            'title' => 'Seleccionar', 'data-live-search' => 'true' ,  'required' => true]) !!}
+                                           'data-live-search' => 'true' ,  'required' => true]) !!}
               </div>
             </div>  
          </div>

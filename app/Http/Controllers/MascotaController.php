@@ -87,9 +87,11 @@ class MascotaController extends Controller
     public function edit(Mascota $mascota)
     {
         //
+    
         $this->addPageViews();
 
         $clientes =$this->cliente->orderBy('nombre')->pluck('nombre','id');
+      
         return view('mascotas.edit',compact('clientes','mascota'));  
     }
 

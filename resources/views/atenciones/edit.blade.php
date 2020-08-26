@@ -67,15 +67,15 @@
                 <div class="form-group">
                   {{Form::label('mascota','Mascota:')}}
                   {!! Form::select('mascota_id', $mascotas, null, ['class' => 'form-control selectpicker', 
-                  'placeholder'=>'Seleccionar mascota', 'data-live-search' => 'true' , 'required'=>true ,'id'=>'mascota_id']) !!}
+                  'placeholder'=>'Seleccionar mascota', 'data-live-search' => 'true' , 'required'=>true ,'id'=>'mascota_id' , 'disabled'=>true]) !!}
                 </div>  
               </div>
               <div class="col-lg-3 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                     <div class="form-group">
                         <label for="">Cliente</label>
-                        <input type="text" name="cliente" class="form-control" 
-                           required id="dueño" >
+                        <input type="text" disabled class="form-control" 
+                            id="dueño" >
                     </div>
                 </div>
               </div>

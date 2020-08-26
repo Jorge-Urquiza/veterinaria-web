@@ -26,7 +26,8 @@
                                     <td>{{$index}}</td>
                                     <td>{{$item->nombre}}</td>
                                     <td>{{$item->tipo}}</td>
-                                    <td><a href="{{$item->ruta}}">{{$item->ruta}}</a></td>
+                                    <td><a href="{{url("{$item->ruta}")}}">{{$item->ruta}}</a></td>
+                                  
                                     @php
                                       $index++;  
                                     @endphp

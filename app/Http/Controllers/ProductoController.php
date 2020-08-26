@@ -58,7 +58,7 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         //
-       
+       dd($request->all());
         $request->validate([
         'nombre'=> 'required',
         'precio' => 'required|numeric|min:1',

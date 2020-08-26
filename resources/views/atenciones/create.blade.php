@@ -23,7 +23,7 @@
             </ul>
           </div>
          @endif  
-          <form action="{{ route('atenciones.store') }}" method="POST">
+          <form action="{{ route('atenciones.store') }}" method="POST" name="formulario">
             @csrf 
             <div class="row">
               <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
@@ -89,23 +89,23 @@
               <div class="col-lg-4 col-sm-3 col-md-3 col-xs-12">
                 <div class="form-group">
                   <label for="">Problema(s)</label>
-                  <textarea name ="problema" class="form-control" rows="3" required></textarea>
+                  <textarea name ="problema" class="form-control" rows="3" value="{{ old('problema') }} " required></textarea>
                 </div>
               </div>
               <div class="col-lg-4 col-sm-3 col-md-3 col-xs-12">
                 <div class="form-group">
                   <label for="">Diagnostico</label>
-                  <textarea name ="diagnostico" class="form-control"  rows="3" required></textarea>
+                  <textarea name ="diagnostico" class="form-control"  rows="3"  value="{{ old('diagnostico') }}"  required ></textarea>
                 </div>
               </div>
               <div class="col-lg-4 col-sm-3 col-md-3 col-xs-12">
                 <div class="form-group">
                   <label for="">Tratamiento</label>
-                  <textarea name ="tratamiento" class="form-control" rows="3" required></textarea>
+                  <textarea name ="tratamiento" class="form-control" rows="3" value="{{ old('tratamiento') }} " required></textarea>
                 </div>
               </div>
             </div>
-              <button type="submit" class="btn btn-success">Registrar</button>
+              <button type="submit" class="btn btn-success" id="btn_guardar">Registrar</button>
         </form>
       </div>
 </div>
@@ -132,6 +132,41 @@ function llenarDueño(id) {
     });
 }
 </script>
+<script>
+  (function() {
+      var formulario = document.getElementsByName('formulario')[0],
+          elementos = formulario.elements,
+          boton = document.getElementById('btn_guardar');
+  
+      var validarProblema = function(e) {
+  
+          if (formulario.problema.value.length < 5) {
+              alert("El campo problema debe contener al menos 5 caracteres ");
+              e.preventDefault();
+          }
+      };
+      var validarDiagnostico = function(e) {
+          if (formulario.diagnostico.value.length < 5) {
+              alert("El campo diagnostico debe contener al menos 5 caracteres ");
+              e.preventDefault();
+          }
+      };
+      var validarTratamiento = function(e) {
+          if (formulario.tratamiento.value.length < 5) {
+              alert("El campo tratamiento debe contener al menos 5 caracteres ");
+              e.preventDefault();
+          }
+      };
+      var validar = function(e) {
+        validarProblema(e);
+        validarDiagnostico(e);
+        validarTratamiento(e);
+      }
+      formulario.addEventListener("submit", validar);
+  
+  }())
+  
+  </script>
 @endpush
 @endsection
 @section('footer')

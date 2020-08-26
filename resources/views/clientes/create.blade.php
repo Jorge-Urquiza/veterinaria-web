@@ -42,7 +42,7 @@
               {!! Form::select('genero', 
                   ['Masculino'=>'Masculino','Femenino'=>'Femenino', 'Otro' => 'Otro'], null,
                    ['class' => 'form-control form-control-sm ', 'id' => 'genero' ,
-                   'placeholder' => 'Seleccionar categoria' , 'data-live-search' => 'true' ,  'required' => true]) !!}
+                   'placeholder' => 'Seleccionar cliente' , 'data-live-search' => 'true' ,  'required' => true]) !!}
              </div>
             <div class="form-group">
                 <label for="">Celular</label>
@@ -93,8 +93,8 @@
         }
     };
     var validarEdad = function(e) {
-        if (formulario.edad.value.length  < 10   ) {
-            alert("La persona debe tener al menos 10 años ");
+        if (formulario.edad.value  < 10   ) {
+            alert("La edad debe de ser de  al menos 10 años ");
             e.preventDefault();
         }
     };

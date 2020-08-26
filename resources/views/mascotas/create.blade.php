@@ -23,7 +23,7 @@
             </ul>
           </div>
          @endif  
-          <form action="{{ route('mascotas.store') }}" method="POST">
+          <form action="{{ route('mascotas.store') }}" method="POST" name="formulario">
             @csrf 
             
             <div class="form-group">
@@ -51,11 +51,48 @@
                'placeholder'=>'Seleccionar dueño', 'data-live-search' => 'true' , 
                                            'id' => 'producto_id' ,  'required' => true]) !!}
             </div>  
-             <button type="submit" class="btn btn-success">Registrar</button>
+             <button type="submit" class="btn btn-success" id="btn_guardar">Registrar</button>
         </form>
       </div>
 </div>
 @endsection
+@push('scripts')
+{{-- VALIDACIONES CON JS DEL FORM--}}
+<script>
+  (function() {
+    var formulario = document.getElementsByName('formulario')[0],
+        elementos = formulario.elements,
+        boton = document.getElementById('btn_guardar');
+
+    var validarNombre = function(e) {
+        if (formulario.nombre.value.length < 3) {
+            alert("El nombre de mascota debe contener al menos 3 caracteres ");
+            e.preventDefault();
+        }
+    };
+    var validarRaza = function(e) {
+        if (formulario.raza.value.length < 3) {
+            alert("La raza debe contener al menos 3 caracteres ");
+            e.preventDefault();
+        }
+    };
+    var validarColor = function(e) {
+        if (formulario.color.value.length < 3) {
+            alert("El color de la mascota debe contener al menos 3 caracteres ");
+            e.preventDefault();
+        }
+    };
+    var validar = function(e) {
+        validarNombre(e);
+        validarRaza(e);
+        validarColor(e);
+    }
+    formulario.addEventListener("submit", validar);
+
+  }())
+
+</script>
+@endpush
 @section('footer')
 <div class="alert alert-dark" role="alert">
     {{Auth()->user()->showCounter(2)}}

@@ -23,34 +23,33 @@
             </ul>
           </div>
          @endif  
-        
-         {!! Form::open(['route'=>['productos.store']], ['class' => 'form-control']) !!}
-         @csrf
+         <form action="{{ route('productos.store') }}" method="POST" id="formulario" name="formulario">
+          @csrf 
+     
           <div class="form-group">
               {{Form::label('nombre','Nombre:')}}
-              {{Form::text('nombre',null,['class'=>'form-control','id' => 'pcantidad',
-               'placeholder' => 'Nombre producto'])}} 
+              {{Form::text('nombre',null,['class'=>'form-control','id' => 'nombre',
+               'placeholder' => 'Nombre producto' ,  'required' => true])}} 
             </div>
             <div class="form-group">
                 {{Form::label('precio','Precio(Bs.):')}}
-                
                 {{Form::number('precio', null, ['class'=>'form-control',
                   'id' => 'precio' , 'placeholder' => 'Ej: 20.50' , 
-                  'min' => '1',  'required' => true] )}} 
+                  'min' => '1' ,  'required' => true] )}} 
             </div>
             <div class="form-group">
               {{Form::label('stock','Stock:')}}
               {{Form::number('stock',1,['class'=>'form-control',
-              'id' => 'cantidad' , 'placeholder' => 'Ej: 5' , 'min' => '1',  'required' => true])}} 
+              'id' => 'stock' , 'placeholder' => 'Ej: 5' , 'min'=>1 ,  'required' => true])}} 
             </div>
             <div class="form-group">
                 {{Form::label('categoria','Categorias:')}}
                 {!! Form::select('categoria_id', $categorias, null, ['placeholder' => 'Seleccionar categoria'
                 ,'class' => 'form-control selectpicker',
-                                            'title' => 'Seleccionar', 'data-live-search' => 'true' ,  'required' => true]) !!}
+                                        'data-live-search' => 'true' ,  'required' => true]) !!}
             </div>
-             <button type="submit" class="btn btn-success">Guardar</button>
-         {!! Form::close()!!}
+             <button type="submit" class="btn btn-success" id="btn_guardar">Guardar</button>
+        </form>
           
       </div>
 </div>
@@ -77,7 +76,7 @@
         }
     };
     var validarStock = function(e) {
-        if (formulario.stock.value.length < 1) {
+        if (formulario.stock.value < 1 ) {
             alert("El stock debe ser como minimo de 1 ");
             e.preventDefault();
         }

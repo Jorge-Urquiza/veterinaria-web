@@ -1,0 +1,17 @@
+create or replace function stock_disparador() returns trigger as $modificar$
+declare begin
+	UPDATE productos SET stock= stock - new.cantidad WHERE productos.id = 	new.producto_id ;
+	return null;
+end;
+$modificar$ language plpgsql;
+
+create or replace function stock_disparador() returns trigger as $modificar$
+declare begin
+	UPDATE productos SET stock= stock - new.cantidad WHERE productos.id = 	new.producto_id ;
+	return null;
+end;
+$modificar$ language plpgsql;
+
+create trigger stock_update after insert 
+on detalle_venta for each row
+execute procedure stock_disparador();
