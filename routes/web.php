@@ -65,6 +65,10 @@ Route::group(['middleware' => ['auth']], function () {
       Route::get('veterinarios/{veterinario}/edit','VeterinarioController@edit')->name('veterinarios.edit');
       Route::put('veterinarios/{veterinario}/update', 'VeterinarioController@update')->name('veterinarios.update');
       Route::delete('veterinarios/{veterinario}/delete', 'VeterinarioController@destroy')->name('veterinarios.delete');
+
+      //Rol
+      Route::get('veterinarios/{veterinario}/asignar','VeterinarioController@asignarRol')->name('veterinarios.asignar');
+      Route::get('veterinarios/{veterinario}/quitar','VeterinarioController@quitarRol')->name('veterinarios.quitar');
    
      //Custom
       Route::post('color', 'VeterinarioController@color')->name('color');

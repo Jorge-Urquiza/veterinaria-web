@@ -122,5 +122,17 @@ class VeterinarioController extends Controller
         $this->veterinario->save();
         return redirect('home');
     }
+    function asginarRol(User $veterinario){
+        $veterinario->rol="director";
+        $veterinario->save(); //
+        $notification = 'El rol del veterinario'.$veterinario->nombre . ' ' . $veterinario->apellido . 'ha sido actualizado';
+        return \redirect()->route('veterinarios.index')->with(compact('notification'));
+    }
+    function quitarRol(User $veterinario){
+        $veterinario->rol="empleado";
+        $veterinario->save(); //
+        $notification = 'El rol del veterinario'.$veterinario->nombre . ' ' . $veterinario->apellido . 'ha sido actualizado';
+        return \redirect()->route('veterinarios.index')->with(compact('notification'));
+    }
    
 }

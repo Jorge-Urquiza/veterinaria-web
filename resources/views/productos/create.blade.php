@@ -23,18 +23,16 @@
             </ul>
           </div>
          @endif  
-         @php
-             $max = 1000; 
-         @endphp
-         {!! Form::open(['route'=>['productos.store'] ]) !!}
+        
+         {!! Form::open(['route'=>['productos.store']], ['class' => 'form-control']) !!}
          @csrf
           <div class="form-group">
               {{Form::label('nombre','Nombre:')}}
               {{Form::text('nombre',null,['class'=>'form-control','id' => 'pcantidad',
-               'required' => true, 'placeholder' => 'Nombre producto'])}} 
+               'placeholder' => 'Nombre producto'])}} 
             </div>
             <div class="form-group">
-                {{Form::label('precio','Precio:')}}
+                {{Form::label('precio','Precio(Bs.):')}}
                 
                 {{Form::number('precio', null, ['class'=>'form-control',
                   'id' => 'precio' , 'placeholder' => 'Ej: 20.50' , 
@@ -43,7 +41,7 @@
             <div class="form-group">
               {{Form::label('stock','Stock:')}}
               {{Form::number('stock',1,['class'=>'form-control',
-              'id' => 'cantidad' , 'placeholder' => 'Ej: 5' , 'min' => '1', 'max' => $max,  'required' => true])}} 
+              'id' => 'cantidad' , 'placeholder' => 'Ej: 5' , 'min' => '1',  'required' => true])}} 
             </div>
             <div class="form-group">
                 {{Form::label('categoria','Categorias:')}}
@@ -57,6 +55,45 @@
       </div>
 </div>
 @endsection
+
+@push('scripts')
+{{-- VALIDACIONES CON JS DEL FORM--}}
+<script>
+(function() {
+    var formulario = document.getElementsByName('formulario')[0],
+        elementos = formulario.elements,
+        boton = document.getElementById('btn_guardar');
+
+    var validarNombre = function(e) {
+        if (formulario.nombre.value.length < 3) {
+            alert("El nombre del producto debe contener al menos 3 caracteres ");
+            e.preventDefault();
+        }
+    };
+    var validarPrecio = function(e) {
+        if (formulario.precio.value.length < 1) {
+            alert("El precio de producto debe ser de al menos 1 Bs");
+            e.preventDefault();
+        }
+    };
+    var validarStock = function(e) {
+        if (formulario.stock.value.length < 1) {
+            alert("El stock debe ser como minimo de 1 ");
+            e.preventDefault();
+        }
+    };
+    var validar = function(e) {
+        validarNombre(e);
+        validarPrecio(e);
+        validarStock(e);
+    }
+
+    formulario.addEventListener("submit", validar);
+
+}())
+
+</script>
+@endpush
 @section('footer')
 <div class="alert alert-dark" role="alert">
     {{Auth()->user()->showCounter(5)}}

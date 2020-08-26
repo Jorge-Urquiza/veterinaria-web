@@ -28,11 +28,11 @@
             <div class="form-group">
               <label for="">Nombre</label>
               <input  type="text" name="nombre" id="nombre" 
-              class="form-control" placeholder="Ingresa el Nombre" value="{{old('nombre')}}" required >
+              class="form-control" placeholder="Ingresa el Nombre" value="{{old('nombre')}}"  >
             </div>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Descripcion</label>
-              <textarea name ="descripcion" class="form-control" id="descripcion" rows="3" required></textarea>
+              <textarea name ="descripcion" class="form-control" id="descripcion" rows="3" value="{{old('descripcion')}}"></textarea>
             </div>
              <button type="submit" class="btn btn-success" id="btn_guardar">Registrar</button>
         </form>
@@ -40,34 +40,35 @@
 </div>
 @endsection
 @push('scripts')
+{{-- VALIDACIONES CON JS DEL FORM--}}
 <script>
-  (function(){
-  var formulario = document.getElementsByName('formulario')[0],
-    elementos =formulario.elements,
-    boton= document.getElementById('btn_guardar');
-    
-	var validarNombre= function(e){
-   
-		if(formulario.nombre.value.length < 3){
-      alert("El nombre categoria debe contener al menos 3 caracteres ");
-      e.preventDefault();
-		}
-  };
-  var validarDescripcion= function(e){
-		if(formulario.nombre.value.length < 3){
-      alert("La descripcion debe contener al menos 5 caracteres ");
-      e.preventDefault();
-		}
-	};
-	var validar = function(e){
-    validarNombre(e);
-    validarDescripcion(e);
-	}
-	formulario.addEventListener("submit",validar);
-	
-}())
-</script>
+(function() {
+    var formulario = document.getElementsByName('formulario')[0],
+        elementos = formulario.elements,
+        boton = document.getElementById('btn_guardar');
 
+    var validarNombre = function(e) {
+
+        if (formulario.nombre.value.length < 3) {
+            alert("El nombre de la categoria debe contener al menos 3 caracteres ");
+            e.preventDefault();
+        }
+    };
+    var validarDescripcion = function(e) {
+        if (formulario.descripcion.value.length < 5) {
+            alert("La descripcion debe contener al menos 5 caracteres ");
+            e.preventDefault();
+        }
+    };
+    var validar = function(e) {
+        validarNombre(e);
+        validarDescripcion(e);
+    }
+    formulario.addEventListener("submit", validar);
+
+}())
+
+</script>
 @endpush
 @section('footer')
 <div class="alert alert-dark" role="alert">

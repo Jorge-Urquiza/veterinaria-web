@@ -54,7 +54,12 @@
                         <form action="{{route('veterinarios.delete',$veterinario->id)}}" method="post">
                           @csrf
                           @method('DELETE')
-                          <a href="{{route('veterinarios.delete',$veterinario->id)}}" class="btn btn-primary btn-sm">Editar</a>
+                           @if($veterinario->rol === 'empleado')
+                           <a href="{{route('veterinarios.asignar',$veterinario->id)}}" class="btn btn-success btn-sm">Asignar rol</a>
+                           @else
+                           <a href="{{route('veterinarios.quitar',$veterinario->id)}}" class="btn btn-warning btn-sm">Quitar rol</a>
+                           @endif
+                           <a href="{{route('veterinarios.delete',$veterinario->id)}}" class="btn btn-primary btn-sm">Editar</a>
                           <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                         </form>
                     </td>

@@ -41,6 +41,37 @@
       </div>
 </div>
 @endsection
+@push('scripts')
+{{-- VALIDACIONES CON JS DEL FORM--}}
+<script>
+(function() {
+    var formulario = document.getElementsByName('formulario')[0],
+        elementos = formulario.elements,
+        boton = document.getElementById('btn_guardar');
+
+    var validarNombre = function(e) {
+
+        if (formulario.nombre.value.length <= 3) {
+            alert("El nombre de la categoria debe contener al menos 3 caracteres ");
+            e.preventDefault();
+        }
+    };
+    var validarDescripcion = function(e) {
+        if (formulario.descripcion.value.length <= 5) {
+            alert("La descripcion debe contener al menos 5 caracteres ");
+            e.preventDefault();
+        }
+    };
+    var validar = function(e) {
+        validarNombre(e);
+        validarDescripcion(e);
+    }
+    formulario.addEventListener("submit", validar);
+
+}())
+
+</script>
+@endpush
 @section('footer')
 <div class="alert alert-dark" role="alert">
     {{Auth()->user()->showCounter(4)}}

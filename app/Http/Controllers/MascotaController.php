@@ -59,6 +59,7 @@ class MascotaController extends Controller
             'tipo'=> 'required',
             'cliente_id'=> 'required',
         ]); 
+        
         $data = $request->all();
         $this->mascota->create($data);
         \App\Buscar::store($request->get('nombre')  ,'mascota','/mascotas');

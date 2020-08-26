@@ -55,7 +55,7 @@ class CategoriaController extends Controller
     
         $request->validate([
             'nombre'=> 'required',
-            'descripcion' => 'required',
+            'descripcion' => 'required|max:255',
             
         ]);
         $data = $request->all();
@@ -102,7 +102,7 @@ class CategoriaController extends Controller
         
         $request->validate([
             'nombre'=> 'required',
-            'descripcion' => 'required',
+            'descripcion' => 'required|max:255',
           
         ]);
           $this->categoria= $categoria;
@@ -131,4 +131,5 @@ class CategoriaController extends Controller
     private function addCountVisit(){
         Auth::user()->countPage(4);
     }
+    
 }
