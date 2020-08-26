@@ -31,7 +31,7 @@
         <tbody>
             @foreach ($detalles as $detalle)
             <tr>
-                <th>1   </th>
+                <th>1</th>
                 <th>{{$detalle->producto->nombre}}</th>
                 <th>{{$detalle->cantidad}}</th>
                 <th>{{$detalle->precio. ' Bs.'}}</th>

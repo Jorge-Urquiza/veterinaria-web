@@ -159,8 +159,8 @@ class VentaController extends Controller
         return \redirect()->route('ventas.index')->with(compact('notification'));
     }
     function imprimir(Venta $venta){
-        $detalles =DetalleVenta::all();
-
+        $detalles =DetalleVenta::where('venta_id', $venta->id)->get();
+       
         $pdf = \PDF::loadView('ventas.reporte',compact('venta', 'detalles'));
         return $pdf->stream();
     }
